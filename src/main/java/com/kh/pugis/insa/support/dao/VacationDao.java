@@ -26,21 +26,7 @@ public class VacationDao {
 
 	public VacationDao(){}
 	
-//	public String getDate(Connection conn){
-//		ResultSet rs = null;
-//		
-//		String sql = "SELECT TO_CHAR(SYSDATE,'YYYY-MM-DD') FROM DUAL"; 
-//		try {
-//			PreparedStatement pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			if(rs.next()){
-//				return rs.getString(1);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return ""; // 데이터베이스 오류
-//	}
+
 	public ArrayList<String> maxseq(){
 		Vacation_work vacation = null;
 		ArrayList<Vacation_work> vacationList = 

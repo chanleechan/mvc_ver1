@@ -34,7 +34,7 @@
 	<div class="outer" align="center">
 		<br>
 		<h2 align="center">휴가 대기자 목록</h2>
-		<form>
+		<form action ="http://localhost:8070/pugis/vacation/vaOk">
 		<div class="tableArea" align = "center">
 			<table border="1" id="listArea">
 			<tr>

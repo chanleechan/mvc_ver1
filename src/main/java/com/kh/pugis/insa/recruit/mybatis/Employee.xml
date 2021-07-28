@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Employee">
+
+	<resultMap type="com.kh.pugis.insa.recruit.domain.Employee"
+		id="result">
+		<result property="emp_code" column="emp_code" />
+		<result property="emp_name" column="emp_name" />
+		<result property="emp_gender" column="emp_gender" />
+		<result property="emp_phone" column="emp_phone" />
+		<result property="emp_retire" column="emp_retire" />
+		<result property="service_point" column="service_point" />
+	</resultMap>
+
+	<select id="getEmployeeList" resultMap="result">
+		SELECT
+		emp_code,
+		emp_name,
+		emp_gender,
+		emp_phone
+		FROM EMPLOYEE
+	</select>
+	<select id = "sujungEmployee" resultMap = "result">
+	select emp_code, emp_name, emp_gender, emp_phone, from employee where={emp_code}
+	</select>
+
+	<update id="update">
+		update employee
+		set emp_code=#{emp_code}, emp_name=#{emp_name}, emp_gender=#{emp_gender},
+		emp_phone=#{emp_phone}
+		where emp_code=#{emp_code}
+	</update>
+
+	<delete id="remove">
+		delete from employee where emp_code=#{emp_code}
+	</delete>
+
+
+</mapper>

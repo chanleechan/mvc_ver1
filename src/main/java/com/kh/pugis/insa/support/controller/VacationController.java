@@ -58,17 +58,17 @@ public class VacationController {
 		return pageNm;
 	}
 	
-	@RequestMapping(value = "/insertVacationOk", method = RequestMethod.POST)
-	
-	public String insertVacationOk(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-		logger.info("휴가등록.",locale);
-		String pageNm = "";
-		
-		pageNm = "insa/";
-		
-		return pageNm;
-	}
-	
+//	@RequestMapping(value = "/insertVacationOk", method = RequestMethod.POST)
+//	
+//	public String insertVacationOk(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
+//		logger.info("휴가등록.",locale);
+//		String pageNm = "";
+//		
+//		pageNm = "insa/";
+//		
+//		return pageNm;
+//	}
+//	
 	@RequestMapping(value = "/insertVacationNo", method = RequestMethod.POST)
 	
 	public String insertVacationNo(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
@@ -95,8 +95,9 @@ public class VacationController {
 			model.addAttribute("vaList", vacationList);
 			page = "/insa/support/vacation/vacationList";
 		} else {
-			page = "views/common/errorPage";
 			model.addAttribute("msg", "공지사항 목록 불러오기 에러!");
+			page = "/insa/support/vacation/vacationList";
+			
 		}
 		
 		
@@ -104,61 +105,58 @@ public class VacationController {
 		return page;
 	}
 	
-@RequestMapping(value = "/vNo.va", method = RequestMethod.POST)
+//@RequestMapping(value = "/vNo.va", method = RequestMethod.POST)
 	
-	public String noVacation(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-		logger.info("휴가 목록.",locale);
-		
-		String status = request.getParameter("status");
-		String pageNm = "";
-		Vacation_work vw = new Vacation_work();
-		
-		vw.setStatus("반려");
-		
-		int result = 0;
-		try {
-			result = new VacationService().noVacation(vw);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
-		if(result > 0) {
-			pageNm = "vSelectOne.va?status=" + status;
-		} else {
-			model.addAttribute("msg","공지사항 수정 실패!!");
-			
-		
-		}
-		return pageNm;
-	}
+//	public String noVacation(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
+//		logger.info("휴가 목록.",locale);
+//		
+//		String status = request.getParameter("status");
+//		String pageNm = "";
+//		Vacation_work vw = new Vacation_work();
+//		
+//		vw.setStatus("반려");
+//		
+//		int result = 0;
+//		try {
+//			//result = new VacationService().noVacation(vw);
+//		} catch (SQLException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		
+//		if(result > 0) {
+//			pageNm = "vSelectOne.va?status=" + status;
+//		} else {
+//			model.addAttribute("msg","공지사항 수정 실패!!");
+//			
+//		
+//		}
+//		return pageNm;
+//	}
 
-	@RequestMapping(value = "/vOk.va", method = RequestMethod.POST)
+	@RequestMapping(value = "/vaOk", method = RequestMethod.GET)
 
-	public String okVacation(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
+	public String okVacation(Model model,Locale locale, HttpServletRequest req,HttpSession session ) throws IOException  {
 	logger.info("휴가 목록.",locale);
-	
-		String status = request.getParameter("status");
-		String pageNm = "";
-		Vacation_work vw = new Vacation_work();
 		
-		vw.setStatus("승인");
 		
-		int result = 0;
-		try {
-			result = new VacationService().noVacation(vw);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+			String pageNm = "";
+
+			int result = 0;
+			try {
+				result = new VacationService().vacationCommit(req,session);
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(result > 0) {
+				pageNm = "/insa/support/worker/index";
+			} else {
+				model.addAttribute("msg","공지사항 수정 실패!!");
+				pageNm = "/insa/support/worker/index";
+			}
 		
-		if(result > 0) {
-			pageNm = "vSelectOne.va?status=" + status;
-		} else {
-			model.addAttribute("msg","공지사항 수정 실패!!");
-			
 		
-		}
 		return pageNm;
 	}
 	

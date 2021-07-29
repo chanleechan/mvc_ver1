@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.kh.pugis.insa.support.dao.VacationDao;
 import com.kh.pugis.insa.support.domain.Vacation_work;
@@ -46,27 +47,22 @@ public class VacationService {
 		return vw;
 	}
 
-	public int okVacation(Vacation_work vw) throws SQLException {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		int result = new VacationDao().okVacation(conn, vw);
-		
-		if(result > 0) conn.close();
-		else conn.rollback();		
-		conn.close();
-		
-		return result;
-	}
+//	public int okVacation(Vacation_work vw) throws SQLException {
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		int result = new VacationDao().okVacation( vw);
+//		
+//		if(result > 0) conn.close();
+//		else conn.rollback();		
+//		conn.close();
+//		
+//		return result;
+//	}
 
-	public int noVacation(Vacation_work vw) throws SQLException {
-		Connection conn = JDBCTemplate.getConnection();
+	public int vacationCommit(HttpServletRequest req, HttpSession session) throws SQLException {
 		
-		int result = new VacationDao().noVacation(conn, vw);
 		
-		if(result > 0) conn.commit();
-		else conn.rollback();
-		
-		conn.close();
+		int result = new VacationDao().vacationCommit(req,session);
 		
 		return result;
 	}

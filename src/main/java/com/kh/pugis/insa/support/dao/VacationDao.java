@@ -23,7 +23,8 @@ public class VacationDao {
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
-
+	PreparedStatement pstmt;
+	
 	public VacationDao(){}
 	
 
@@ -139,7 +140,7 @@ public class VacationDao {
 		ArrayList<Vacation_work> list = null;
 		conn = JDBCTemplate.getConnection();
 		
-		String sql = "SELECT * FROM VACATION_WORK ORDER BY va_code ASC";
+		String sql = "SELECT * FROM VACATION_WORK where status='대기' ORDER BY va_code ASC";
 		
 		try {
 			stmt = conn.createStatement();
@@ -159,10 +160,10 @@ public class VacationDao {
 				vw.setStatus(rs.getString("status"));
 				list.add(vw);
 			}
-			System.out.println(list.get(1));
+			
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 		} finally {
 			
@@ -208,50 +209,56 @@ public class VacationDao {
 		return vw;
 	}
 
-	public int okVacation(Connection conn, Vacation_work vw) throws SQLException {
+	public int vacationCommit(HttpServletRequest req, HttpSession session) throws SQLException {
 		
-		conn = JDBCTemplate.getConnection();
+		ArrayList<String> statusList = new ArrayList<String>();
+		ArrayList<String> vaCodeList = new ArrayList<String>();
+		String[] cdList = null;
+		String[] okList = null;
+		cdList = req.getParameterValues("va_code");
+		okList = req.getParameterValues("vaStatus");
+		
+		if(okList !=null) {
+			for(String temp:okList) {
+				statusList.add(temp);
+			}
+		}
+		if(cdList != null) {
+			for(String temp:cdList) {
+				vaCodeList.add(temp);
+			}
+		}
 		int result = 0;
 		
-		PreparedStatement pstmt = null;
+		if(vaCodeList.size() != 0) {
 		
-		String sql = "UPDATE VACATION_WORK SET STATUS=? WHERE(STATUS='대기')";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vw.getStatus());
+			conn = JDBCTemplate.getConnection();
 			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			pstmt.close();
+			
+			String sql = "UPDATE VACATION_WORK SET STATUS=? where va_code = ?";
+			
+			try {
+				for(int i = 0; i<statusList.size(); i++) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, statusList.get(i));
+				pstmt.setString(2, vaCodeList.get(i));
+				pstmt.executeUpdate();
+				conn.commit();
+				
+				}
+				result = 1;
+				pstmt.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+			
+			}
+		}else {
+			result = 0;
 		}
-		
-		return result;
-	}
 
-	public int noVacation(Connection conn, Vacation_work vw) throws SQLException {
-		
-		conn = JDBCTemplate.getConnection();
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = "UPDATE VACATION_WORK SET STATUS=? WHERE(STATUS='대기')";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vw.getStatus());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			pstmt.close();
-		}
 		
 		return result;
 	}

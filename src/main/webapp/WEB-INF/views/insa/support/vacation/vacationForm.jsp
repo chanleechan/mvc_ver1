@@ -10,7 +10,7 @@
 <% 
 
 	Date date = new Date();
-	SimpleDateFormat simpleDate = new SimpleDateFormat("yy/mm/dd");
+	SimpleDateFormat simpleDate = new SimpleDateFormat("yy/MM/dd");
 	String strdate = simpleDate.format(date);
 
 %>

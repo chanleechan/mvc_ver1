@@ -7,26 +7,40 @@
 <meta charset="UTF-8">
 <title>휴가 목록</title>
 <style type="text/css">
-  table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #444444;
-    padding: 10px;
-    text-align: center;
-  }
-  thead tr {
-    background-color: #0d47a1;
-    color: #ffffff;
-  }
-  tbody tr:nth-child(2n) {
-    background-color: #bbdefb;
-  }
-  tbody tr:nth-child(2n+1) {
-    background-color: #e3f2fd;
-  }
+.member {
+ font-size: 50px;
+ text-shadow: 0 0 10px #666;
+ color: #fff;
+ margin: 0 auto;
+ text-align: center;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-style: italic;
+}
+.tableArea{
+margin: 5px;
+}
+table {
+  width: 1103px;
+  height: 219px;
+  border-top: 1px solid #444444;
+  border-collapse: collapse;
+}
+th, td {
+  border-bottom: 1px solid #444444;
+  padding: 10px;
+  text-align: center;
+}
+thead tr {
+  background-color: #0d47a1;
+  color: #ffffff;
+}
+tbody tr:nth-child(2n) {
+  background-color: #bbdefb;
+}
+tbody tr:nth-child(2n+1) {
+  background-color: #e3f2fd;
+}
 </style>
 
 <script type="text/javascript">
@@ -49,31 +63,28 @@
 </script>
 </head>
 <body>
+<h2 class = "member" align="center">휴가 대기자 목록</h2>
 	<div class="outer" align="center">
 		<br>
-		<h2 align="center">휴가 대기자 목록</h2>
+		
 		<form action ="http://localhost:8070/pugis/vacation/vaOk" method ="get">
-		<div class="tableArea" align = "center">
-			<table border="1" id="listArea">
-			<tr>
-				
-				<th>휴가신청코드</th>
-				<th>신청일</th>
-				<th>사번</th>
-				<th>사원명</th>
-				<th>시작일</th>
-				<th>복귀일</th>
-				<th>사유</th>
-				<th>상태</th>
-				<th>수정</th>
-
-			</tr>
+			<div class="tableArea" align = "center">
+				<table border="1" id="listArea">
+				<tr>
+					<th>휴가신청코드</th>
+					<th>신청일</th>
+					<th>사번</th>
+					<th>사원명</th>
+					<th>시작일</th>
+					<th>복귀일</th>
+					<th>사유</th>
+					<th>상태</th>
+					<th>수정</th>
+				</tr>
 			<c:if test = "${empty vaList}">
-				<td colspan="9">수정할 내용이 없습니다.</td>
+					<td colspan="9">수정할 내용이 없습니다.</td>
 			</c:if>
-			
 			<c:forEach var="List" items="${vaList}" >	
-
 				<tr>
 					<td>${List.va_code}</td>
 					<td>${List.vacation_applyDay}</td>	
@@ -92,15 +103,11 @@
 					<input type = "hidden" name = "va_code" value ="${List.va_code}" >
 					</td>
 				</tr>
-			</c:forEach>
-			
-		</table>
-		
-		
-		<br>
-			<input type = "submit" value = "수정하기" >
-			
-		</div>
+				</c:forEach>	
+			</table>
+			<br>
+				<input type = "submit" value = "수정하기" >	
+			</div>
 		</form>
 		<button onclick="goHome()">메뉴로 돌아가기</button>
 	</div>	

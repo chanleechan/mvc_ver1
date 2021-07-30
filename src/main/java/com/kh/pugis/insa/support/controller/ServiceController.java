@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.pugis.insa.support.dao.MemberDao;
-import com.kh.pugis.insa.support.domain.b_appliance;
-import com.kh.pugis.insa.support.domain.basketInfo;
-import com.kh.pugis.insa.support.domain.book;
-import com.kh.pugis.insa.support.domain.h_appliance;
+import com.kh.pugis.insa.support.domain.B_Appliance;
+import com.kh.pugis.insa.support.domain.BasketInfo;
+import com.kh.pugis.insa.support.domain.Book;
+import com.kh.pugis.insa.support.domain.H_Appliance;
 import com.kh.pugis.insa.support.service.serviceList;
 
 
@@ -28,11 +28,11 @@ import com.kh.pugis.insa.support.service.serviceList;
 @Controller
 @RequestMapping(value = "/test")
 
-public class serviceController {
+public class ServiceController {
 	HttpServletRequest req;
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(serviceController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
 	
 
 	
@@ -41,15 +41,15 @@ public class serviceController {
 	public String happList(Locale locale, Model model)  {
 		logger.info("일반가전품목입니다..",locale);
 		//-------------일반가전-----------//
-		ArrayList<h_appliance> happList = null;
+		ArrayList<H_Appliance> happList = null;
 		serviceList serviceList = new serviceList();
 		happList = serviceList.h_appSearch();
 		//-------------업무가전-----------//
-		ArrayList<b_appliance> bappList = null;
+		ArrayList<B_Appliance> bappList = null;
 		serviceList = new serviceList();
 		bappList = serviceList.b_appSearch();
 		//-------------도서---------------//
-		ArrayList<book> bookList = null;
+		ArrayList<Book> bookList = null;
 		serviceList = new serviceList();
 		bookList = serviceList.BookSearch();
 		
@@ -77,9 +77,9 @@ public class serviceController {
 		
 		HttpSession session = req.getSession();
 		//HttpSession session2 = req.getSession();
-		ArrayList<book> book_List = null;
-		ArrayList<h_appliance> h_app_List = null;
-		ArrayList<b_appliance> b_app_List = null;
+		ArrayList<Book> book_List = null;
+		ArrayList<H_Appliance> h_app_List = null;
+		ArrayList<B_Appliance> b_app_List = null;
 		
 		String maxLangth = "max";
 		serviceList service_BookList = new serviceList();
@@ -91,9 +91,9 @@ public class serviceController {
 		serviceList service_b_appList = new serviceList();
 		b_app_List = service_b_appList.b_appSearch();
 		
-		ArrayList<book> b_List = new ArrayList<book>();
-		ArrayList<h_appliance> n_appList = new ArrayList<h_appliance>();
-		ArrayList<b_appliance> b_appList = new ArrayList<b_appliance>();
+		ArrayList<Book> b_List = new ArrayList<Book>();
+		ArrayList<H_Appliance> n_appList = new ArrayList<H_Appliance>();
+		ArrayList<B_Appliance> b_appList = new ArrayList<B_Appliance>();
 
 		
 		ArrayList<String> arrayList_Book = new ArrayList<String>();
@@ -411,9 +411,9 @@ public class serviceController {
 		MemberDao md = new MemberDao();
 		String pageNm="";
 		md.service_point(session);
-		ArrayList<basketInfo> basketListBook = null;
-		ArrayList<basketInfo> basketListH = null;
-		ArrayList<basketInfo> basketListB = null;
+		ArrayList<BasketInfo> basketListBook = null;
+		ArrayList<BasketInfo> basketListH = null;
+		ArrayList<BasketInfo> basketListB = null;
 		
 		serviceList svt = new serviceList();
 		basketListBook = svt.basketList_book(session);

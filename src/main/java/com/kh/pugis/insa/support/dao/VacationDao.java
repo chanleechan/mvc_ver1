@@ -117,7 +117,6 @@ public class VacationDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, vacation_code);
 			pstmt.setString(1, emp_code);
 			pstmt.setString(2, n_emp_name);
 			pstmt.setString(3, vacation_startDate);
@@ -141,6 +140,44 @@ public class VacationDao {
 		conn = JDBCTemplate.getConnection();
 		
 		String sql = "SELECT * FROM VACATION_WORK where status='대기' ORDER BY va_code ASC";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			list = new ArrayList<Vacation_work>();
+			
+			while (rs.next()) {
+				Vacation_work vw = new Vacation_work();
+				vw.setVacation_applyDay(rs.getString("vacation_applyday"));
+				vw.setVa_code(rs.getString("va_code"));
+				vw.setEmp_code(rs.getString("emp_code"));
+				vw.setN_emp_name(rs.getString("n_emp_name"));
+				vw.setVacation_startDate(rs.getString("vacation_startDate"));
+				vw.setVacation_endDate(rs.getString("vacation_endDate"));
+				vw.setVcontent(rs.getString("contents"));
+				vw.setStatus(rs.getString("status"));
+				list.add(vw);
+			}
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+		
+		return list;
+	}
+	public ArrayList<Vacation_work> selectListAll() throws SQLException {
+		ArrayList<Vacation_work> list = null;
+		conn = JDBCTemplate.getConnection();
+		
+		String sql = "SELECT * FROM VACATION_WORK ORDER BY va_code ASC";
 		
 		try {
 			stmt = conn.createStatement();

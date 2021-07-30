@@ -1,6 +1,6 @@
 package com.kh.pugis.insa.support.domain;
 //업무기구 정보성클래스
-public class basketInfo {
+public class BasketInfo {
 	String basket_seq;
 	String emp_code;
 	int h_app_amount;
@@ -11,9 +11,9 @@ public class basketInfo {
 	int b_app_amount;
 	String payment;
 	
-	book book;
-	h_appliance h_appliance;
-	b_appliance b_appliance;
+	Book book;
+	H_Appliance h_appliance;
+	B_Appliance b_appliance;
 	public String getBasket_seq() {
 		return basket_seq;
 	}
@@ -69,22 +69,22 @@ public class basketInfo {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	public book getBook() {
+	public Book getBook() {
 		return book;
 	}
-	public void setBook(book book) {
+	public void setBook(Book book) {
 		this.book = book;
 	}
-	public h_appliance getH_appliance() {
+	public H_Appliance getH_appliance() {
 		return h_appliance;
 	}
-	public void setH_appliance(h_appliance h_appliance) {
+	public void setH_appliance(H_Appliance h_appliance) {
 		this.h_appliance = h_appliance;
 	}
-	public b_appliance getB_appliance() {
+	public B_Appliance getB_appliance() {
 		return b_appliance;
 	}
-	public void setB_appliance(b_appliance b_appliance) {
+	public void setB_appliance(B_Appliance b_appliance) {
 		this.b_appliance = b_appliance;
 	}
 	

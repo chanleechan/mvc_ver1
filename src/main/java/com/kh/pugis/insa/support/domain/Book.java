@@ -1,6 +1,6 @@
 package com.kh.pugis.insa.support.domain;
 //도서 정보성클래스
-public class book {
+public class Book {
 	String book_code;
 	String book_name;
 	int book_price;

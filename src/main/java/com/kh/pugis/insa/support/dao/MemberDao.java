@@ -5,13 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 //import com.kh.pugis.insa.support.domain.Member;
-import com.kh.pugis.insa.support.domain.member_Account;
+import com.kh.pugis.insa.support.domain.Member_Account;
 import com.kh.pugis.insa.support.utils.JDBCTemplate;
 
 public class MemberDao {
@@ -57,7 +56,7 @@ public class MemberDao {
 		return ck;
 	}
 	public void service_point(HttpSession session) {
-		member_Account member = null;
+		Member_Account member = null;
 		
 		try {
 			conn = JDBCTemplate.getConnection();
@@ -70,7 +69,7 @@ public class MemberDao {
 			
 			rs= pstmt.executeQuery();
 			if(rs.next()) {
-				member = new member_Account();
+				member = new Member_Account();
 				member.setF_service_point(rs.getInt("f_service_point"));
 				f_service_point = member.getF_service_point();
 				session.setAttribute("f_service_point", f_service_point);

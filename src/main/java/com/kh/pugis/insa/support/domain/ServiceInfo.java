@@ -1,6 +1,6 @@
 package com.kh.pugis.insa.support.domain;
 //복지목록
-public class serviceInfo{
+public class ServiceInfo{
 	String book_code;
 	String b_app_code;
 	String h_app_code;

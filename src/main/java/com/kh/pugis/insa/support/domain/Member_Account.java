@@ -1,6 +1,6 @@
 package com.kh.pugis.insa.support.domain;
 
-public class member_Account {
+public class Member_Account {
 	String emp_code;
 	String f_emp_pass;
 	int f_service_point;

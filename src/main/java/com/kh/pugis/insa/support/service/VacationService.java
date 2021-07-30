@@ -36,6 +36,13 @@ public class VacationService {
 		
 		return vacationList;
 	}
+	public ArrayList<Vacation_work> selectListAll() throws SQLException {
+		ArrayList<Vacation_work> vacationList= null;
+		vacationList = new VacationDao().selectListAll();
+		
+		
+		return vacationList;
+	}
 
 	public Vacation_work selectOne(String vacation_code) throws SQLException {
 		Connection conn = JDBCTemplate.getConnection();

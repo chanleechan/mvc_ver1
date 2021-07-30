@@ -31,7 +31,7 @@ public class VacationController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(VacationController.class);
 	
-	@RequestMapping(value = "/vInsert.va", method = RequestMethod.GET)
+	@RequestMapping(value = "/vInsert", method = RequestMethod.GET)
 	
 	public String vInsert(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
 		logger.info("휴가등록.",locale);
@@ -58,9 +58,9 @@ public class VacationController {
 		return pageNm;
 	}
 	
-//	@RequestMapping(value = "/insertVacationOk", method = RequestMethod.POST)
+//	@RequestMapping(value = "/insertVacationNo", method = RequestMethod.POST)
 //	
-//	public String insertVacationOk(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
+//	public String insertVacationNo(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
 //		logger.info("휴가등록.",locale);
 //		String pageNm = "";
 //		
@@ -68,17 +68,6 @@ public class VacationController {
 //		
 //		return pageNm;
 //	}
-//	
-	@RequestMapping(value = "/insertVacationNo", method = RequestMethod.POST)
-	
-	public String insertVacationNo(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-		logger.info("휴가등록.",locale);
-		String pageNm = "";
-		
-		pageNm = "insa/";
-		
-		return pageNm;
-	}
 	
 	@RequestMapping(value = "/selectVacation", method = RequestMethod.GET)
 	
@@ -99,40 +88,30 @@ public class VacationController {
 			page = "/insa/support/vacation/vacationList";
 			
 		}
-		
-		
-		
 		return page;
 	}
 	
-//@RequestMapping(value = "/vNo.va", method = RequestMethod.POST)
+	@RequestMapping(value = "/selectVacationAll", method = RequestMethod.GET)
 	
-//	public String noVacation(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-//		logger.info("휴가 목록.",locale);
-//		
-//		String status = request.getParameter("status");
-//		String pageNm = "";
-//		Vacation_work vw = new Vacation_work();
-//		
-//		vw.setStatus("반려");
-//		
-//		int result = 0;
-//		try {
-//			//result = new VacationService().noVacation(vw);
-//		} catch (SQLException e) {
-//			
-//			e.printStackTrace();
-//		}
-//		
-//		if(result > 0) {
-//			pageNm = "vSelectOne.va?status=" + status;
-//		} else {
-//			model.addAttribute("msg","공지사항 수정 실패!!");
-//			
-//		
-//		}
-//		return pageNm;
-//	}
+	public String selectListAll(Model model,Locale locale, HttpServletRequest request ) throws IOException, SQLException  {
+		logger.info("휴가 목록.",locale);
+		
+		ArrayList<Vacation_work> vacationList = null;
+		VacationService vs = new VacationService();
+		vacationList = vs.selectListAll();
+		
+		String page = "";
+		if(vacationList != null) {
+			
+			model.addAttribute("vaList", vacationList);
+			page = "/insa/support/vacation/vacationList";
+		} else {
+			model.addAttribute("msg", "내용이 없습니다.");
+			page = "/insa/support/vacation/vacationList";
+			
+		}
+		return page;
+	}
 
 	@RequestMapping(value = "/vaOk", method = RequestMethod.GET)
 
@@ -160,32 +139,32 @@ public class VacationController {
 		return pageNm;
 	}
 	
-	@RequestMapping(value = "/SelectOne.va", method = RequestMethod.POST)
-
-	public String selectOne(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-	logger.info("휴가 목록.",locale);
-	
-		String vacation_code = request.getParameter("vacation_code");
-		
-		Vacation_work vw = null;
-		try {
-			vw = new VacationService().selectOne(vacation_code);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		String page = "";
-		
-		if(vw != null) {
-			page = "views/vacation/vacationDetail.jsp";
-			model.addAttribute("vacation_work", vw);
-		}else {
-			page = "views/common/errorPage.jsp";
-			model.addAttribute("msg", "휴가 신청서 상세 보기 실패!");
-		}
-		return page;
-		
-	}
+//	@RequestMapping(value = "/SelectOne.va", method = RequestMethod.POST)
+//
+//	public String selectOne(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
+//	logger.info("휴가 목록.",locale);
+//	
+//		String vacation_code = request.getParameter("vacation_code");
+//		
+//		Vacation_work vw = null;
+//		try {
+//			vw = new VacationService().selectOne(vacation_code);
+//		} catch (SQLException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		String page = "";
+//		
+//		if(vw != null) {
+//			page = "views/vacation/vacationDetail.jsp";
+//			model.addAttribute("vacation_work", vw);
+//		}else {
+//			page = "views/common/errorPage.jsp";
+//			model.addAttribute("msg", "휴가 신청서 상세 보기 실패!");
+//		}
+//		return page;
+//		
+//	}
 	
 	@RequestMapping(value = "/header", method = RequestMethod.GET)
 

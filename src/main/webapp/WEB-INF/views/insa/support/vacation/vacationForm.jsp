@@ -18,6 +18,26 @@
 <meta charset="UTF-8">
 <title>휴가 신청</title>
 <style type="text/css">
+.member {
+ font-size: 50px;
+ text-shadow: 0 0 10px #666;
+ color: #fff;
+ margin: 0 auto;
+ text-align: center;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-style: italic;
+}
+.tableArea{
+margin: 5px;
+}
+table {
+  width: 1103px;
+  height: 219px;
+  border-top: 1px solid #444444;
+  border-collapse: collapse;
+}
+
 button {
 	font-weight:bold;
 	text-decoration:none;
@@ -67,11 +87,7 @@ button:hover {
 	background:-ms-linear-gradient(#ffffff, #e4f1ff);
 	background:linear-gradient(#ffffff, #e4f1ff);
 }
- table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
+
   th, td {
     border: 1px solid #444444;
     padding: 10px;
@@ -81,9 +97,10 @@ button:hover {
 <body>
 	<div class="outer">
 		<br>
-		<h2 align="center">휴가 신청서</h2>
-		<div class="tableArea">
-			<form action="http://localhost:8070/pugis/vacation/vInsert.va" method="get">
+		<h2 class = "member">휴가 신청서</h2>
+		<br>
+		<div class="tableArea" align="center">
+			<form class="form" action="http://localhost:8070/pugis/vacation/vInsert" method="get">
 				<table >
 					<tr>
 						<td>신청 날짜</td>

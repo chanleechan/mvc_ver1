@@ -23,12 +23,12 @@ import com.kh.pugis.insa.support.service.WorkerService;
 @Controller
 @RequestMapping(value = "/work")
 
-public class workController {
+public class WorkController {
 	HttpServletRequest request;
 	HttpServletResponse response;
 	HttpSession session;
 	
-	private static final Logger logger = LoggerFactory.getLogger(workController.class);
+	private static final Logger logger = LoggerFactory.getLogger(WorkController.class);
 	
 	@RequestMapping(value = "/searchKeyword.e", method = RequestMethod.POST)
 	

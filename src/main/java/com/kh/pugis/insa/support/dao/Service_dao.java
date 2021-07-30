@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.kh.pugis.insa.support.domain.book;
-import com.kh.pugis.insa.support.domain.h_appliance;
-import com.kh.pugis.insa.support.domain.serviceInfo;
+import com.kh.pugis.insa.support.domain.Book;
+import com.kh.pugis.insa.support.domain.H_Appliance;
+import com.kh.pugis.insa.support.domain.ServiceInfo;
 import com.kh.pugis.insa.support.utils.JDBCTemplate;
 import com.kh.pugis.insa.support.service.serviceList;
-import com.kh.pugis.insa.support.domain.b_appliance;
-import com.kh.pugis.insa.support.domain.basketInfo;
+import com.kh.pugis.insa.support.domain.B_Appliance;
+import com.kh.pugis.insa.support.domain.BasketInfo;
 
-public class service_dao {
+public class Service_dao {
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
@@ -29,12 +29,12 @@ public class service_dao {
 	
 
 	
-	public ArrayList<book> addmenu_book() {
+	public ArrayList<Book> addmenu_book() {
 		//복지메뉴추가(도서)
 		
-		book addBookList = null;
-		ArrayList<book> bookList = 
-				new ArrayList<book>();
+		Book addBookList = null;
+		ArrayList<Book> bookList = 
+				new ArrayList<Book>();
 		
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -46,7 +46,7 @@ public class service_dao {
 			
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
-				addBookList = new book();
+				addBookList = new Book();
 				
 				addBookList.setBook_code(rs.getString("book_code"));
 				addBookList.setBook_name(rs.getString("book_name"));
@@ -68,12 +68,12 @@ public class service_dao {
 		return bookList;
 	}
 	
-	public ArrayList<h_appliance> addmenu_H_appliances() {
+	public ArrayList<H_Appliance> addmenu_H_appliances() {
 		//복지메뉴추가(일반가전)
 		
-		h_appliance appList = null;		
-		ArrayList<h_appliance> addHList = 
-				new ArrayList<h_appliance>();
+		H_Appliance appList = null;		
+		ArrayList<H_Appliance> addHList = 
+				new ArrayList<H_Appliance>();
 				
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -85,7 +85,7 @@ public class service_dao {
 					
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
-				appList = new h_appliance();
+				appList = new H_Appliance();
 						
 				appList.setH_app_code(rs.getString("h_app_code"));
 				appList.setH_app_name(rs.getString("h_app_name"));
@@ -106,10 +106,10 @@ public class service_dao {
 		return addHList;
 	}
 	
-	public ArrayList<h_appliance> add_basket_H_app(){
-		h_appliance appList = null;		
-		ArrayList<h_appliance> addHList = 
-				new ArrayList<h_appliance>();
+	public ArrayList<H_Appliance> add_basket_H_app(){
+		H_Appliance appList = null;		
+		ArrayList<H_Appliance> addHList = 
+				new ArrayList<H_Appliance>();
 				
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -121,7 +121,7 @@ public class service_dao {
 					
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
-				appList = new h_appliance();
+				appList = new H_Appliance();
 						
 				appList.setH_app_name(rs.getString("h_app_name"));
 				
@@ -140,12 +140,12 @@ public class service_dao {
 		return addHList;
 	}
 
-	public ArrayList<b_appliance> addmenu_b_appliances() {
+	public ArrayList<B_Appliance> addmenu_b_appliances() {
 		//복지메뉴추가(업무가전)
 		
-		b_appliance appList = null;		
-		ArrayList<b_appliance> addBList = 
-				new ArrayList<b_appliance>();
+		B_Appliance appList = null;		
+		ArrayList<B_Appliance> addBList = 
+				new ArrayList<B_Appliance>();
 				
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -157,7 +157,7 @@ public class service_dao {
 					
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
-				appList = new b_appliance();
+				appList = new B_Appliance();
 						
 				appList.setB_app_code(rs.getString("b_app_code"));
 				appList.setB_app_name(rs.getString("b_app_name"));
@@ -605,11 +605,11 @@ public class service_dao {
 	
 
 	//최종 장바구니 추가 book
-	public ArrayList<basketInfo> basket_menu_book(HttpSession session) {
+	public ArrayList<BasketInfo> basket_menu_book(HttpSession session) {
 		//장바구니
-		basketInfo basket = null;
-		ArrayList<basketInfo> basketList = 
-				new ArrayList<basketInfo>();
+		BasketInfo basket = null;
+		ArrayList<BasketInfo> basketList = 
+				new ArrayList<BasketInfo>();
 		//ArrayList<book> bookList = new ArrayList<book>();
  
 		String emp_code = (String)session.getAttribute("emp_id");
@@ -624,14 +624,14 @@ public class service_dao {
 
 		rs =stmt.executeQuery(sql);
 		while(rs.next()) {
-			book b = new book();
+			Book b = new Book();
 			b.setBook_code(rs.getString("book_code"));
 			b.setBook_name(rs.getString("book_name"));
 			b.setBook_amount(rs.getInt("book_amount"));
 			b.setBook_price(rs.getInt("book_price"));
 			
 			
-			basket = new basketInfo();
+			basket = new BasketInfo();
 			basket.setBasket_seq(rs.getString("basket_seq"));
 			basket.setEmp_code(rs.getString("emp_code"));
 			basket.setBook_code(rs.getString("book_code"));
@@ -651,11 +651,11 @@ public class service_dao {
 		return basketList;
 	}
 	//최종 장바구니 추가 happ
-	public ArrayList<basketInfo> basket_menu_happ(HttpSession session) {
+	public ArrayList<BasketInfo> basket_menu_happ(HttpSession session) {
 		//장바구니
-		basketInfo basket = null;
-		ArrayList<basketInfo> basketList = 
-				new ArrayList<basketInfo>();
+		BasketInfo basket = null;
+		ArrayList<BasketInfo> basketList = 
+				new ArrayList<BasketInfo>();
 		//ArrayList<book> bookList = new ArrayList<book>();
  
 		String emp_code = (String)session.getAttribute("emp_id");
@@ -670,14 +670,14 @@ public class service_dao {
 
 		rs =stmt.executeQuery(sql);
 		while(rs.next()) {
-			h_appliance h = new h_appliance();
+			H_Appliance h = new H_Appliance();
 			h.setH_app_code(rs.getString("h_app_code"));
 			h.setH_app_name(rs.getString("h_app_name"));
 			h.setH_amount(rs.getInt("h_amount"));
 			h.setH_price(rs.getInt("h_price"));
 			
 			
-			basket = new basketInfo();
+			basket = new BasketInfo();
 			basket.setBasket_seq(rs.getString("basket_seq"));
 			basket.setEmp_code(rs.getString("emp_code"));
 			basket.setH_app_code(rs.getString("h_app_code"));
@@ -697,11 +697,11 @@ public class service_dao {
 		return basketList;
 	}
 	//최종 장바구니 추가 bapp
-	public ArrayList<basketInfo> basket_menu_bapp(HttpSession session) {
+	public ArrayList<BasketInfo> basket_menu_bapp(HttpSession session) {
 		//장바구니
-		basketInfo basket = null;
-		ArrayList<basketInfo> basketList = 
-				new ArrayList<basketInfo>();
+		BasketInfo basket = null;
+		ArrayList<BasketInfo> basketList = 
+				new ArrayList<BasketInfo>();
  
 		String emp_code = (String)session.getAttribute("emp_id");
 	try{
@@ -715,14 +715,14 @@ public class service_dao {
 
 		rs =stmt.executeQuery(sql);
 		while(rs.next()) {
-			b_appliance b = new b_appliance();
+			B_Appliance b = new B_Appliance();
 			b.setB_app_code(rs.getString("b_app_code"));
 			b.setB_app_name(rs.getString("b_app_name"));
 			b.setB_amount(rs.getInt("b_amount"));
 			b.setB_price(rs.getInt("b_price"));
 			
 			
-			basket = new basketInfo();
+			basket = new BasketInfo();
 			basket.setBasket_seq(rs.getString("basket_seq"));
 			basket.setEmp_code(rs.getString("emp_code"));
 			basket.setB_app_code(rs.getString("b_app_code"));
@@ -788,9 +788,9 @@ public class service_dao {
 	}
 	//basket_info 테이블 시퀀스
 	public ArrayList<String> maxseq(){
-		basketInfo basket = null;
-		ArrayList<basketInfo> basketList = 
-				new ArrayList<basketInfo>();
+		BasketInfo basket = null;
+		ArrayList<BasketInfo> basketList = 
+				new ArrayList<BasketInfo>();
 		ArrayList<String> maxseq = new ArrayList<String>();
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -802,7 +802,7 @@ public class service_dao {
 			
 			rs =stmt.executeQuery(sql);
 			if(rs.next()) {
-				basket = new basketInfo();
+				basket = new BasketInfo();
 				basket.setBasket_seq(rs.getString("max(to_number(basket_seq))"));
 				basketList.add(basket);
 			}
@@ -824,9 +824,9 @@ public class service_dao {
 	}
 	//service_menu 테이블 시퀀스
 	public ArrayList<String> maxseq_s(){
-		serviceInfo basket = null;
-		ArrayList<serviceInfo> service_info = 
-				new ArrayList<serviceInfo>();
+		ServiceInfo basket = null;
+		ArrayList<ServiceInfo> service_info = 
+				new ArrayList<ServiceInfo>();
 		ArrayList<String> maxseq_s = new ArrayList<String>();
 		try{
 			conn = JDBCTemplate.getConnection();
@@ -838,7 +838,7 @@ public class service_dao {
 			
 			rs =stmt.executeQuery(sql);
 			if(rs.next()) {
-				basket = new serviceInfo();
+				basket = new ServiceInfo();
 				basket.setPay_seq(rs.getString("max(to_number(pay_seq))"));
 				service_info.add(basket);
 			}

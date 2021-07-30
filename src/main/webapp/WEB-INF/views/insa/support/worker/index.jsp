@@ -6,95 +6,70 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>출퇴근 시스템</title>
 <style>
-div	{
-	text-align: center;
+.member {
+ font-size: 50px;
+ text-shadow: 0 0 20px #666;
+ color: #fff;
+ margin: 0 auto;
+ text-align: center;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-style: italic;
 }
-.btn1 {
-	font-weight:bold;
-	text-decoration:none;
-	font-family:Arial;
-	box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 3px 2px;
-	o-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 3px 2px;
-	-moz-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 3px 2px;
-	-webkit-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 3px 2px;
-	background:#ffffff;
-	background:-o-linear-gradient(90deg, #ffffff, #7ea5d9);
-	background:-moz-linear-gradient( center top, #ffffff 5%, #7ea5d9 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #7ea5d9) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#7ea5d9');
-	background:-webkit-linear-gradient(#ffffff, #7ea5d9);
-	background:-ms-linear-gradient(#ffffff, #7ea5d9);
-	background:linear-gradient(#ffffff, #7ea5d9);
-	text-indent:0px;
-	line-height:73px;
-	-moz-border-radius:94px;
-	-webkit-border-radius:94px;
-	border-radius:94px;
-	text-align:center;
-	vertical-align:middle;
-	display:inline-block;
-	font-size:10px;
-	color:#ffffff;
-	width:73px;
-	height:73px;
-	padding:11px;
-	text-shadow:#73a7ba -1px -1px 0px;
-	border-color:#ebeab7;
-	border-width:7px;
-	border-style:solid;
+.form {
+ width: 498px;
+ height: 300px;
+ border-radius: 25px;
+ border: 5px double #999;
+ margin: 30px auto;
+}
+.form2 {
+ width: 500px;
+ min-width: 320px;
+ height: 200px;
+ margin: 20px auto;
+ margin-left:60px;
+}
+.form3 {
+ float: left;
+ /*   background:#f00;  */
+}
+#wrap {
+ width: 600px;
+ height: 500px;
+ margin: 0 auto;
+}
+input[type="button"] {
+ font-size: 15px;
+ text-shadow: 0 0 5px #666;
+ color: #fff;
+ margin: 0 auto;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-style: italic;
+ margin-top:30px;
+ margin-right:30px;
+ 
+}
+input[type="submit"] {
+ font-size: 15px;
+ text-shadow: 0 0 5px #666;
+ color: #fff;
+ margin: 0 auto;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-style: italic;
+ margin-top:10px;
+ margin-right:30px;
+}
+.clear {
+ clear: both;
+ margin-top:80px;
 }
 
-.btn1:active {
-	box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 0 2px;
-	o-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 0 2px;
-	-moz-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 0 2px;
-	-webkit-box-shadow:inset #5e9ed6 0px 5px 18px 6px,#d6d6d6 1px 0 2px;
-	position:relative;
-	top:3px
-}
-
-.btn1:hover {
-	background:#7ea5d9;
-	background:-o-linear-gradient(90deg, #7ea5d9, #ffffff);
-	background:-moz-linear-gradient( center top, #7ea5d9 5%, #ffffff 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7ea5d9), color-stop(1, #ffffff) );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7ea5d9', endColorstr='#ffffff');
-	background:-webkit-linear-gradient(#7ea5d9, #ffffff);
-	background:-ms-linear-gradient(#7ea5d9, #ffffff);
-	background:linear-gradient(#7ea5d9, #ffffff);
-}
 
 </style>
-</head>
-
-<body>
-		
-	<br>
-		<%if(session.getAttribute("manager").equals("dm")) {	%>
-	<br>
-	<div id="btn_group">
-		<a href='http://localhost:8070/pugis/work/goWork' id='hiBtn' >출근하기</a>	
-		<a href='http://localhost:8070/pugis/work/offWork' id='byeBtn'>퇴근하기</a>	
-		<a href='http://localhost:8070/pugis/vacation/vacationAdd' id='vBtn'>휴가신청</a>	
-		<a href='http://localhost:8070/pugis/vacation/selectVacation'>신청자조회</a>
-		<a href= 'http://localhost:8070/pugis/vacation/selectVacation'>전체목록조회</a>	
-	</div>
-	<%} else if((session.getAttribute("manager").equals("n"))) {%>
-	<div id="btn_group">
-		<a href='http://localhost:8070/pugis/work/goWork' id='hiBtn'>출근하기</a>	
-		<a href='http://localhost:8070/pugis/work/offWork' id='byeBtn'>퇴근하기</a>	
-		<a href='http://localhost:8070/pugis/vacation/vacationAdd' id='vBtn'>휴가신청</a>
-			
-		
-	</div>
-	<%} %>
-	<form action ="http://localhost:8070/pugis/test/goMain" method = "get">
-	<div>
-		<input type="submit" value = "뒤로가기">
-		<input type ="hidden" name = "emp_code" value = "<%=session.getAttribute("emp_code")%>">
-	</div>
-	</form>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" >
 	// 출근 버튼 클릭 시 
 	
@@ -129,6 +104,50 @@ div	{
 		
 		
 	</script>
+</head>
+
+<body>
+<div id="wrap">
+	<h1 class = "member">근태 페이지</h1>
+	<div class = "form">
+		<div class = "form2">
+			<div class="form3">
+				<form method="get" action="http://localhost:8070/pugis/test/logout">
+					<input type="submit" value="로그아웃">
+				</form>
+				<br>
+				<br>
+
+		<%if(session.getAttribute("manager").equals("dm")) {	%>
+				
+				<form action = "http://localhost:8070/pugis/test/goMain" method = "get">
+					
+					<label><input type="button" onclick="location.href ='http://localhost:8070/pugis/work/goWork';"  id='hiBtn' value = "출근하기">	</label>
+					<label><input type = "button" onclick = "location.href='http://localhost:8070/pugis/work/offWork'" id='byeBtn' value = "퇴근하기">	</label>
+					<label><input type = "button" onclick = "location.href='http://localhost:8070/pugis/vacation/vacationAdd'" id='vBtn' value = "휴가신청">	</label>
+					<label><input type = "button" onclick = "location.href='http://localhost:8070/pugis/vacation/selectVacation'" value = "신청자조회"></label>
+					<label><input type = "button" onclick = "location.href= 'http://localhost:8070/pugis/vacation/selectVacationAll'" value = "전체목록조회"></label>
+					<input type="submit" value = "뒤로가기">
+					<input type ="hidden" name = "emp_code" value = "<%=session.getAttribute("emp_code")%>"> 
+				</form>
+	
+	<%} else if((session.getAttribute("manager").equals("n"))) {%>
+	
+				<div id="btn_group">
+				<form action ="http://localhost:8070/pugis/test/goMain" method = "get">
+					<input type="button" onclick="location.href ='http://localhost:8070/pugis/work/goWork';"  id='hiBtn' value = "출근하기">	
+					<input type = "button" onclick = "location.href='http://localhost:8070/pugis/work/offWork'" id='byeBtn' value = "퇴근하기">	
+					<input type = "button" onclick = "location.href='http://localhost:8070/pugis/vacation/vacationAdd'" id='vBtn' value = "휴가신청">
+					<input type="submit" value = "뒤로가기">
+					<input type ="hidden" name = "emp_code" value = "<%=session.getAttribute("emp_code")%>">	
+				</form>	
+				</div>
+	
+	<%} %>
+			</div>
+		</div>
+	</div>	
+</div>
 	
 </body>
 </html>

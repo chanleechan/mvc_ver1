@@ -1,6 +1,6 @@
 package com.kh.pugis.insa.support.domain;
 //일반가전 정보성클래스
-public class h_appliance {
+public class H_Appliance {
 	String h_app_code;
 	String h_app_name;
 	int h_price;

@@ -59,7 +59,7 @@ body {
  margin-left:60px;
 }
 input[type="button"] {
- font-size: 30px;
+ font-size: 17px;
  text-shadow: 0 0 5px #666;
  color: #fff;
  margin: 0 auto;
@@ -71,7 +71,7 @@ input[type="button"] {
  
 }
 input[type="submit"] {
- font-size: 15px;
+ font-size: 17px;
  text-shadow: 0 0 5px #666;
  color: #fff;
  margin: 0 auto;

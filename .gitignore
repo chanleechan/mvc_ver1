@@ -6,6 +6,10 @@
 # Compiled class file
 *.class
 
+##backup##
+backup/
+
+
 # Log file
 *.log
 

@@ -33,7 +33,7 @@ div	{
 	text-align:center;
 	vertical-align:middle;
 	display:inline-block;
-	font-size:17px;
+	font-size:10px;
 	color:#ffffff;
 	width:73px;
 	height:73px;
@@ -76,7 +76,7 @@ div	{
 		<a href='http://localhost:8070/pugis/work/goWork' id='hiBtn' >출근하기</a>	
 		<a href='http://localhost:8070/pugis/work/offWork' id='byeBtn'>퇴근하기</a>	
 		<a href='http://localhost:8070/pugis/vacation/vacationAdd' id='vBtn'>휴가신청</a>	
-		<a href='http://localhost:8070/pugis/vacation/selectVacation' class='btn1'>신청자조회</a>
+		<a href='http://localhost:8070/pugis/vacation/selectVacation'>신청자조회</a>
 		<a href= 'http://localhost:8070/pugis/vacation/selectVacation'>전체목록조회</a>	
 	</div>
 	<%} else if((session.getAttribute("manager").equals("n"))) {%>

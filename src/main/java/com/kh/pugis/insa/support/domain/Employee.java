@@ -12,11 +12,11 @@ public class Employee {
 	private String manager;
 	
 	public Employee() {
-		super();
+		
 	}
 
 	public Employee(String emp_code) {
-		super();
+		
 		this.emp_code = emp_code;
 	}
 

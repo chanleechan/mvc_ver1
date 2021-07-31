@@ -31,13 +31,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="employee" items="${list}">
+			<c:forEach var="waitEmployee" items="${list}">
 				<tr>
 					<!-- 첫번째 줄 시작 -->
-					<td>${employee.emp_code}</td>
-					<td>${employee.emp_name}</td>
-					<td>${employee.emp_gender}</td>
-					<td>${employee.emp_phone}</td>
+					<td>${waitEmployee.n_Emp_code}</td>
+					<td>${waitEmployee.n_Emp_name}</td>
+					<td>${waitEmployee.n_Emp_gender}</td>
+					<td>${waitEmployee.n_Emp_phone}</td>
 				
 					<td>
 					<select name = "dept">

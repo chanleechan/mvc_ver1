@@ -3,34 +3,46 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Employee">
 
-	<resultMap type="com.kh.pugis.insa.recruit.domain.Employee"
+	<resultMap type="com.kh.pugis.insa.recruit.domain.WaitEmployee"
 		id="result">
-		<result property="emp_code" column="emp_code" />
-		<result property="emp_name" column="emp_name" />
-		<result property="emp_gender" column="emp_gender" />
-		<result property="emp_phone" column="emp_phone" />
-		<result property="emp_retire" column="emp_retire" />
-		<result property="service_point" column="service_point" />
+		<result property="n_Emp_code" column="n_Emp_code" />
+		<result property="n_Emp_name" column="n_Emp_name" />
+		<result property="n_Emp_gender" column="n_Emp_gender" />
+		<result property="n_Emp_phone" column="n_Emp_phone" />
+		<result property="dept_code" column="dept_code" />
+		<result property="rank_id" column="rank_id" />
+
 	</resultMap>
 
 	<select id="getEmployeeList" resultMap="result">
 		SELECT
-		emp_code,
-		emp_name,
-		emp_gender,
-		emp_phone
-		FROM EMPLOYEE
+		n_emp_code,
+		n_emp_name,
+		n_emp_gender,
+		n_emp_phone,
+		dept_code,
+		rank_id
+		FROM WAITEMPLOYEE
 	</select>
-	<select id = "sujungEmployee" resultMap = "result">
-	select emp_code, emp_name, emp_gender, emp_phone, from employee where={emp_code}
+	
+	<select id="waitEmployeeList" resultMap="result">
+		SELECT
+		n_emp_code,
+		n_emp_name,
+		n_emp_gender,
+		n_emp_phone,
+		dept_code,
+		rank_id
+		FROM WAITEMPLOYEE	
+		where
+		dept_code = 'd8'
 	</select>
-
-	<update id="update">
-		update employee
-		set emp_code=#{emp_code}, emp_name=#{emp_name}, emp_gender=#{emp_gender},
-		emp_phone=#{emp_phone}
-		where emp_code=#{emp_code}
+	
+	<update id="newDept" parameterType="java.util.List">
+		update waitEmployee set dept_code = #{dept_code} where #{n_Emp_code}
 	</update>
+
+
 
 	<delete id="remove">
 		delete from employee where emp_code=#{emp_code}

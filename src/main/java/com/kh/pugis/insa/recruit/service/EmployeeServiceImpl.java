@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.pugis.insa.recruit.dao.EmployeeDao;
-import com.kh.pugis.insa.recruit.domain.Employee;
+import com.kh.pugis.insa.recruit.domain.WaitEmployee;
 
 @Service("employeeService")
 @Transactional
@@ -16,7 +16,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 	private EmployeeDao dao;
 	
 	@Override
-	public List<Employee> list1() {
-		return dao.list1();
+	public List<WaitEmployee> employeeList() {
+		return dao.employeeList();
 	}
+	@Override
+	public List<WaitEmployee> employeeListAll() {
+		return dao.employeeListAll();
+	}
+	
+	@Override
+	public List<WaitEmployee> newDept(String dept_code,String n_Emp_code) {
+		return dao.deptUpdate( dept_code,n_Emp_code);
+	}
+
 }

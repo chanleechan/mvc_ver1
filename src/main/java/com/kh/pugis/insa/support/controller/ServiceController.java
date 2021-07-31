@@ -21,9 +21,6 @@ import com.kh.pugis.insa.support.domain.Book;
 import com.kh.pugis.insa.support.domain.H_Appliance;
 import com.kh.pugis.insa.support.service.serviceList;
 
-
-
-
 	
 @Controller
 @RequestMapping(value = "/test")

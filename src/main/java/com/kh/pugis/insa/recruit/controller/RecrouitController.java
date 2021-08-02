@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kh.pugis.insa.recruit.dao.EmployeeDao_mvc;
+import com.kh.pugis.insa.recruit.dao.RecruitDao;
 import com.kh.pugis.insa.recruit.domain.WaitEmployee;
 import com.kh.pugis.insa.support.domain.Employee;
 
@@ -24,12 +24,12 @@ import com.kh.pugis.insa.support.domain.Employee;
 @Controller
 @RequestMapping(value = "/employee")
 
-public class EmployeeController_mvc {
+public class RecrouitController {
 	HttpServletRequest req;
 	HttpServletResponse resp;
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(EmployeeController_mvc.class);
+	private static final Logger logger = LoggerFactory.getLogger(RecrouitController.class);
 	
 	@RequestMapping(value="/recruitMain")
 	public String main(Locale locale,Model model){
@@ -45,7 +45,7 @@ public class EmployeeController_mvc {
 		logger.info("대기발령직원목록 입니다.",locale);
 		String pageNm = "";
 		ArrayList<WaitEmployee> waitList = null;
-		EmployeeDao_mvc ed = new EmployeeDao_mvc();
+		RecruitDao ed = new RecruitDao();
 		
 		waitList = ed.waitEmployeeList();
 		if(waitList.size() != 0) {
@@ -64,11 +64,30 @@ public class EmployeeController_mvc {
 		logger.info("부서있는 직원 목록입니다..",locale);
 		String pageNm = "";
 		ArrayList<Employee> empList = null;
-		EmployeeDao_mvc ed = new EmployeeDao_mvc();
+		RecruitDao ed = new RecruitDao();
 		empList = ed.allEmployeeList();
 		if(empList.size() != 0) {
 		model.addAttribute("empList",empList);
 		pageNm = "insa/recruit/employeeListAll";
+		}else {
+			pageNm = "insa/recruit/employeeListAll";
+		}
+		
+		return pageNm;
+	}
+	
+	@RequestMapping(value = "/deptUpdate", method = RequestMethod.GET)
+	
+	public String deptUpdate(Locale locale, Model model,HttpServletRequest req)  {
+		logger.info("부서있는 직원 목록입니다..",locale);
+		String pageNm = "";
+		int result = 0;
+		
+		RecruitDao ed = new RecruitDao();
+		result = ed.deptUpdate(req);
+		if(result != 0) {
+		
+			pageNm = "insa/recruit/employeeListAll";
 		}else {
 			pageNm = "insa/recruit/employeeListAll";
 		}

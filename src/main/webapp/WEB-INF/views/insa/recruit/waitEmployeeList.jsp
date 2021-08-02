@@ -79,8 +79,9 @@ function goHome() {
 						<td>${waitEmployee.rank_id}</td>
 						<td>
 							<select name = "dept_code">
+								<option value="d8">대기발령</option>
 								<option value="d1">인사</option>
-								<option value="d2">복지</option>
+								<option value="d2">마케팅</option>
 							</select>
 							<input type="hidden" name = "n_Emp_code" value = "${waitEmployee.n_Emp_code}">
 						</td>

@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-//import com.kh.pugis.insa.support.domain.Member;
 import com.kh.pugis.insa.support.domain.B_Appliance;
 import com.kh.pugis.insa.support.domain.BasketInfo;
 import com.kh.pugis.insa.support.domain.Book;
 import com.kh.pugis.insa.support.domain.H_Appliance;
 import com.kh.pugis.insa.support.dao.Service_dao;
-//import com.kh.pugis.insa.support.dao.MemberDao;
+
 
 
 

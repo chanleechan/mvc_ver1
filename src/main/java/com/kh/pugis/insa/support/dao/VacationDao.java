@@ -289,9 +289,8 @@ public class VacationDao {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
+			} 
 			
-			}
 		}else {
 			result = 0;
 		}

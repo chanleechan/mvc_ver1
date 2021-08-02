@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.kh.pugis.insa.recruit.domain.WaitEmployee;
 import com.kh.pugis.insa.support.domain.Employee;
 import com.kh.pugis.insa.support.utils.JDBCTemplate;
 
-public class EmployeeDao_mvc {
+public class RecruitDao {
 	
 	private Connection conn;
 	private ResultSet rs;
@@ -62,7 +64,8 @@ public class EmployeeDao_mvc {
 			conn = JDBCTemplate.getConnection();			
 			String sql = "select a.emp_code, a.emp_name,a.emp_phone, a.emp_gender, b.dept_name, c.rank_name "
 					+ "from employee a , department b, rank c "
-					+ "where a.dept_code = b.dept_code and a.rank_id = c.rank_id";
+					+ "where a.dept_code = b.dept_code "
+					+ "and a.rank_id = c.rank_id ";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -86,6 +89,68 @@ public class EmployeeDao_mvc {
 			e.printStackTrace();
 		}
 		return empList;
+	}
+	
+	public int deptUpdate(HttpServletRequest req) {
+		String[] cdList = null;
+		String[] dpList = null;
+		dpList = req.getParameterValues("dept_code");
+		cdList = req.getParameterValues("n_Emp_code");
+		ArrayList<String> nEmpList = new ArrayList<String>();
+		ArrayList<String> deptList = new ArrayList<String>();
+		
+		if(cdList !=null) {
+			for(String temp:cdList) {
+			nEmpList.add(temp);
+			}
+		}
+		if(dpList !=null) {
+			for(String temp:dpList) {
+				deptList.add(temp);
+			}
+		}
+		int result = 0;
+		
+		if(nEmpList.size()!= 0) {
+			
+			try {
+				conn = JDBCTemplate.getConnection();
+				String sql ="update waitemployee set dept_code=? where n_emp_code=?";
+				
+				for(int i = 0; i<deptList.size(); i ++) {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, deptList.get(i));
+					pstmt.setString(2, nEmpList.get(i));
+					pstmt.executeUpdate();
+					conn.commit();
+				}
+				String empUpdate = "insert into employee(emp_code,emp_name,emp_phone,emp_gender,dept_code,rank_id,service_point) "
+						+ "select a.n_emp_code,a.n_emp_name, a.n_emp_phone,a.n_emp_gender,a.dept_code,a.rank_id , b.point_code "
+						+ "from waitemployee a, point_master b "
+						+ "where a.dept_code != 'd8' "
+						+ "and b.rank_code = a.rank_id ";
+				pstmt = conn.prepareStatement(empUpdate);
+				pstmt.executeUpdate();
+				conn.commit();
+				
+				String deleteNewEmployee = "delete from waitemployee where dept_code != 'd8'";
+				pstmt = conn.prepareStatement(deleteNewEmployee);
+				pstmt.executeUpdate();
+				conn.commit();
+				
+				result = 1;
+				pstmt.close();
+				conn.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		}else {
+			result = 0;
+		}
+		
+		return result;
 	}
 
 }

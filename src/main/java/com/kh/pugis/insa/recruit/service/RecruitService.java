@@ -2,20 +2,22 @@ package com.kh.pugis.insa.recruit.service;
 
 import java.util.ArrayList;
 
-import com.kh.pugis.insa.recruit.dao.EmployeeDao_mvc;
+import javax.servlet.http.HttpServletRequest;
+
+import com.kh.pugis.insa.recruit.dao.RecruitDao;
 import com.kh.pugis.insa.recruit.domain.WaitEmployee;
 import com.kh.pugis.insa.support.domain.Employee;
 
-public class EmployeeService_mvc {
+public class RecruitService {
 	
-	public EmployeeService_mvc() {
+	public RecruitService() {
 		
 	}
 	
 	public ArrayList<WaitEmployee> waitList(){
 		ArrayList<WaitEmployee> waitList = 
 				new ArrayList<WaitEmployee>();
-		waitList = new EmployeeDao_mvc().waitEmployeeList();
+		waitList = new RecruitDao().waitEmployeeList();
 		
 		return waitList;
 	}
@@ -23,9 +25,16 @@ public class EmployeeService_mvc {
 	public ArrayList<Employee> empList(){
 		ArrayList<Employee> empList = 
 				new ArrayList<Employee>();
-		empList = new EmployeeDao_mvc().allEmployeeList();
+		empList = new RecruitDao().allEmployeeList();
 		
 		return empList;
+	}
+	
+	public int deptUpdate(HttpServletRequest req) {
+		int result = 0;
+		result = new RecruitDao().deptUpdate(req);
+		
+		return result;
 	}
 
 }

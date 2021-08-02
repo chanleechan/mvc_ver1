@@ -97,7 +97,7 @@ input[type="submit"] {
 		</form>
 		<div class = "clear"></div>
 		<label><input type="button" value="사원전체보기" onclick="location.href='http://localhost:8070/pugis/employee/employeeList'"></label>
-		<label><input type="button" value="사원배치하기" onclick="location.href='http://localhost:8070/pugis/employee/waitList'"></label>
+		<label><input type="button" value="사원배치하기" onclick="location.href='http://localhost:8070/pugis/employee/waitEmployeeList'"></label>
 		<label><input type="button" value ="뒤로가기" onclick = "location.href = 'http://localhost:8070/pugis/test/goMain'"></label>
      </div>
      </div>

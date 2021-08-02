@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.pugis.insa.recruit.service.EmployeeService;
 
 @Controller
-@RequestMapping(value = "/employee")
-public class EmployeeController {
+@RequestMapping(value = "/employeeMybatis")
+public class EmployeeController_mybatis {
 	@Autowired EmployeeService employeeService;
 	
 	@RequestMapping(value="/employeeList")

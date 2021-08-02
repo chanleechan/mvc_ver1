@@ -6,8 +6,17 @@ public class WaitEmployee {
 	private String n_Emp_gender;
 	private String n_Emp_phone;
 	private String dept_code;
+	private String dept_name;
 	private String rank_id;
 	
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
 	public WaitEmployee() {
 		
 	}

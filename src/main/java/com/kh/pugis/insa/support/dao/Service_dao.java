@@ -15,7 +15,7 @@ import com.kh.pugis.insa.support.domain.Book;
 import com.kh.pugis.insa.support.domain.H_Appliance;
 import com.kh.pugis.insa.support.domain.ServiceInfo;
 import com.kh.pugis.insa.support.utils.JDBCTemplate;
-import com.kh.pugis.insa.support.service.serviceList;
+import com.kh.pugis.insa.support.service.ServiceList;
 import com.kh.pugis.insa.support.domain.B_Appliance;
 import com.kh.pugis.insa.support.domain.BasketInfo;
 
@@ -745,7 +745,7 @@ public class Service_dao {
 	public String basket_seq() {
 		
 		ArrayList<String> maxseq = new ArrayList<String>();
-		serviceList svl = new serviceList();
+		ServiceList svl = new ServiceList();
 		maxseq = svl.bSeqmax();
 		if(maxseq.get(0) == null) {
 			maxseq.add("0");
@@ -767,7 +767,7 @@ public class Service_dao {
 	public String service_seq() {
 		
 		ArrayList<String> maxseq = new ArrayList<String>();
-		serviceList svl = new serviceList();
+		ServiceList svl = new ServiceList();
 		maxseq = svl.sSeqmax();
 		if(maxseq.get(0) == null) {
 			maxseq.add("0");

@@ -66,21 +66,21 @@ function goHome() {
 						<th>직급</th>
 						<th>배치</th>
 					</tr>
-				<c:if test = "${empty list}">
+				<c:if test = "${empty waitList}">
 					<td colspan="9">등록된 직원이없습니다.</td>
 				</c:if>			
-				<c:forEach var="waitEmployee" items="${list}" >	
+				<c:forEach var="waitEmployee" items="${waitList}" >	
 					<tr>
 						<td>${waitEmployee.n_Emp_code}</td>
 						<td>${waitEmployee.n_Emp_name}</td>
 						<td>${waitEmployee.n_Emp_gender}</td>
 						<td>${waitEmployee.n_Emp_phone}</td>
-						<td>${waitEmployee.dept_code}</td>
+						<td>${waitEmployee.dept_name}</td>
 						<td>${waitEmployee.rank_id}</td>
 						<td>
 							<select name = "dept_code">
-								<option value="d1">d1</option>
-								<option value="d2">d2</option>
+								<option value="d1">인사</option>
+								<option value="d2">복지</option>
 							</select>
 							<input type="hidden" name = "n_Emp_code" value = "${waitEmployee.n_Emp_code}">
 						</td>

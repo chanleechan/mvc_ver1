@@ -15,18 +15,10 @@ import com.kh.pugis.insa.support.dao.Service_dao;
 
 
 
-public class serviceList {
+public class ServiceList {
 	
 
-	public serviceList() {}
-	
-//	public ArrayList<basketInfo> basketSearch() throws ClassNotFoundException{
-//		ArrayList<basketInfo> basketList = 
-//				new ArrayList<basketInfo>();	
-//		basketList = new service_dao().point_basket(req);
-//		return basketList;
-//	}
-	
+	public ServiceList() {}	
 	
 	public int saveBasket(HttpServletRequest req, HttpSession session ) throws ClassNotFoundException {
 		int insert = 0;
@@ -81,15 +73,6 @@ public class serviceList {
 		
 		return basketList;
 	}
-	
-	//회원가입
-//	public ArrayList<Member> insertMember(){
-//		ArrayList<Member> memberList = 
-//				new ArrayList<Member>();
-//		memberList = new MemberDao().inserMember();
-//		
-//		return memberList;
-//	}
 	
 	public ArrayList<H_Appliance> basket_h_appSearch(){
 		ArrayList<H_Appliance> appList = 

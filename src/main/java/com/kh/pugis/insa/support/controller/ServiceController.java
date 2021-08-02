@@ -19,7 +19,7 @@ import com.kh.pugis.insa.support.domain.B_Appliance;
 import com.kh.pugis.insa.support.domain.BasketInfo;
 import com.kh.pugis.insa.support.domain.Book;
 import com.kh.pugis.insa.support.domain.H_Appliance;
-import com.kh.pugis.insa.support.service.serviceList;
+import com.kh.pugis.insa.support.service.ServiceList;
 
 	
 @Controller
@@ -39,15 +39,15 @@ public class ServiceController {
 		logger.info("일반가전품목입니다..",locale);
 		//-------------일반가전-----------//
 		ArrayList<H_Appliance> happList = null;
-		serviceList serviceList = new serviceList();
+		ServiceList serviceList = new ServiceList();
 		happList = serviceList.h_appSearch();
 		//-------------업무가전-----------//
 		ArrayList<B_Appliance> bappList = null;
-		serviceList = new serviceList();
+		serviceList = new ServiceList();
 		bappList = serviceList.b_appSearch();
 		//-------------도서---------------//
 		ArrayList<Book> bookList = null;
-		serviceList = new serviceList();
+		serviceList = new ServiceList();
 		bookList = serviceList.BookSearch();
 		
 		String pageNm = "";
@@ -79,13 +79,13 @@ public class ServiceController {
 		ArrayList<B_Appliance> b_app_List = null;
 		
 		String maxLangth = "max";
-		serviceList service_BookList = new serviceList();
+		ServiceList service_BookList = new ServiceList();
 		book_List = service_BookList.BookSearch();
 		
-		serviceList service_H_appList = new serviceList();
+		ServiceList service_H_appList = new ServiceList();
 		h_app_List = service_H_appList.h_appSearch();
 		
-		serviceList service_b_appList = new serviceList();
+		ServiceList service_b_appList = new ServiceList();
 		b_app_List = service_b_appList.b_appSearch();
 		
 		ArrayList<Book> b_List = new ArrayList<Book>();
@@ -389,7 +389,7 @@ public class ServiceController {
 		String pageNm ="";
 		
 		int insert = 0;
-		serviceList svt = new serviceList();
+		ServiceList svt = new ServiceList();
 		insert = svt.saveBasket(req,session);
 		
 		if(insert == 0) {
@@ -412,7 +412,7 @@ public class ServiceController {
 		ArrayList<BasketInfo> basketListH = null;
 		ArrayList<BasketInfo> basketListB = null;
 		
-		serviceList svt = new serviceList();
+		ServiceList svt = new ServiceList();
 		basketListBook = svt.basketList_book(session);
 		basketListH = svt.basketList_happ(session);
 		basketListB = svt.basketList_bapp(session);
@@ -438,7 +438,7 @@ public class ServiceController {
 		
 		String pageNm = "";
 		int result = 0;
-		serviceList svt = new serviceList();
+		ServiceList svt = new ServiceList();
 		result = svt.payOk(req);
 		if(result == 0 ) {
 			System.out.println("결제에 실패하였습니다.");
@@ -457,7 +457,7 @@ public String deleteMenu(Locale locale, Model model ,HttpServletRequest req)  {
 	
 	String pageNm = "insa/support/test/serviceMain";
 	int result = 0;
-	serviceList svt = new serviceList();
+	ServiceList svt = new ServiceList();
 	result = svt.deleteBasket(req);
 	if(result == 0) {
 		System.out.println("결제에 실패하였습니다.");

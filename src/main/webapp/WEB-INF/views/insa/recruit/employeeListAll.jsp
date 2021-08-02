@@ -59,17 +59,17 @@ tbody tr:nth-child(2n+1) {
 						<th>부서</th>
 						<th>직급</th>
 					</tr>
-				<c:if test = "${empty list}">
+				<c:if test = "${empty empList}">
 					<td colspan="9">등록된 직원이없습니다.</td>
 				</c:if>			
-				<c:forEach var="waitEmployee" items="${list}" >	
+				<c:forEach var="EmployeeList" items="${empList}" >	
 					<tr>
-					<td>${waitEmployee.n_Emp_code}</td>
-					<td>${waitEmployee.n_Emp_name}</td>
-					<td>${waitEmployee.n_Emp_gender}</td>
-					<td>${waitEmployee.n_Emp_phone}</td>
-					<td>${waitEmployee.dept_code}</td>
-					<td>${waitEmployee.rank_id}</td>
+					<td>${EmployeeList.emp_code}</td>
+					<td>${EmployeeList.emp_name}</td>
+					<td>${EmployeeList.emp_gender}</td>
+					<td>${EmployeeList.emp_phone}</td>
+					<td>${EmployeeList.dept_code}</td>
+					<td>${EmployeeList.rank_id}</td>
 					</tr>
 				</c:forEach>
 			</table>

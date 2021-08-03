@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.kh.pugis.insa.support.dao.MemberDao;
 
 @Controller
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/total")
 
 public class MemberController {
 	HttpServletRequest req;
@@ -31,7 +31,7 @@ public class MemberController {
 	public String logout(Locale locale)  {
 		logger.info("로그아웃 처리.",locale);
 		
-		String pageNm = "insa/support/test/logout";
+		String pageNm = "insa/support/totalPage/logout";
 		
 		
 		return pageNm;
@@ -42,7 +42,7 @@ public class MemberController {
 	public String firstPage1(Locale locale)  {
 		logger.info("메인 화면입니다..",locale);
 		
-		String pageNm = "insa/support/test/main";
+		String pageNm = "insa/support/totalPage/main";
 		
 		
 		return pageNm;
@@ -67,7 +67,7 @@ public class MemberController {
 			if(ck == 1) {
 				session = req.getSession();
 				session.setAttribute("emp_id", emp_id);
-				pageNm = "insa/support/test/mainlogin";
+				pageNm = "insa/support/totalPage/mainlogin";
 			}
 			System.out.println(ck);		
 		return pageNm;
@@ -77,7 +77,7 @@ public class MemberController {
 	public String servicePage(Locale locale)  {
 		logger.info("서비스 메인화면입니다...",locale);
 		
-		String pageNm = "insa/support/test/serviceMain";
+		String pageNm = "insa/support/service/serviceMain";
 		
 		
 		return pageNm;
@@ -88,7 +88,7 @@ public class MemberController {
 	public String inputPro(Locale locale)  {
 		logger.info("메인화면입니다..",locale);
 		
-		String pageNm = "insa/support/test/mainlogin";
+		String pageNm = "insa/support/totalPage/mainlogin";
 		
 		
 		return pageNm;
@@ -99,7 +99,7 @@ public class MemberController {
 	public String inputForm(Locale locale)  {
 		logger.info("복지등록 화면입니다.",locale);
 		
-		String pageNm = "insa/support/test/inputForm";
+		String pageNm = "insa/support/totalPage/inputForm";
 		
 		
 		return pageNm;
@@ -119,9 +119,9 @@ public class MemberController {
 		String pageNm = "";
 		
 		if(i == 1) {
-			 pageNm = "insa/support/test/confirmIdOk";
+			 pageNm = "insa/support/totalPage/confirmIdOk";
 		}else {
-			pageNm = "insa/support/test/confirmIdFail";
+			pageNm = "insa/support/totalPage/confirmIdFail";
 		}
 		
 		return pageNm;
@@ -129,16 +129,16 @@ public class MemberController {
 	
 
 	
-	@RequestMapping(value = "/serviceMain", method = RequestMethod.GET)
-	
-	public String login(Locale locale)  {
-		logger.info("로그인화면입니다..",locale);
-		
-		String pageNm = "insa/support/test/main";
-		
-		
-		return pageNm;
-	}
+//	@RequestMapping(value = "/serviceMain", method = RequestMethod.GET)
+//	
+//	public String login(Locale locale)  {
+//		logger.info("로그인화면입니다..",locale);
+//		
+//		String pageNm = "insa/support/test/main";
+//		
+//		
+//		return pageNm;
+//	}
 	@RequestMapping(value = "/joinMember", method = RequestMethod.GET)
 	
 	public String joinMember(Locale locale, HttpServletRequest req) throws SQLException  {
@@ -148,9 +148,9 @@ public class MemberController {
 		check = md.insertMember(req);
 		String pageNm = "";
 		if(check == 1) {
-			pageNm = "insa/support/test/main";
+			pageNm = "insa/support/totalPage/main";
 		}else {
-			pageNm = "insa/support/test/main";
+			pageNm = "insa/support/totalPage/main";
 		}
 		
 		return pageNm;

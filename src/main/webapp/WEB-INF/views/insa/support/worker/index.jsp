@@ -112,7 +112,7 @@ input[type="submit"] {
 	<div class = "form">
 		<div class = "form2">
 			<div class="form3">
-				<form method="get" action="http://localhost:8070/pugis/test/logout">
+				<form method="get" action="http://localhost:8070/pugis/total/logout">
 					<input type="submit" value="로그아웃">
 				</form>
 				<br>
@@ -120,7 +120,7 @@ input[type="submit"] {
 
 		<%if(session.getAttribute("manager").equals("dm")) {	%>
 				
-				<form action = "http://localhost:8070/pugis/test/goMain" method = "get">
+				<form action = "http://localhost:8070/pugis/total/goMain" method = "get">
 					
 					<label><input type="button" onclick="location.href ='http://localhost:8070/pugis/work/goWork';"  id='hiBtn' value = "출근하기">	</label>
 					<label><input type = "button" onclick = "location.href='http://localhost:8070/pugis/work/offWork'" id='byeBtn' value = "퇴근하기">	</label>
@@ -134,7 +134,7 @@ input[type="submit"] {
 	<%} else if((session.getAttribute("manager").equals("n"))) {%>
 	
 				<div id="btn_group">
-				<form action ="http://localhost:8070/pugis/test/goMain" method = "get">
+				<form action ="http://localhost:8070/pugis/total/goMain" method = "get">
 					<input type="button" onclick="location.href ='http://localhost:8070/pugis/work/goWork';"  id='hiBtn' value = "출근하기">	
 					<input type = "button" onclick = "location.href='http://localhost:8070/pugis/work/offWork'" id='byeBtn' value = "퇴근하기">	
 					<input type = "button" onclick = "location.href='http://localhost:8070/pugis/vacation/vacationAdd'" id='vBtn' value = "휴가신청">

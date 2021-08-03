@@ -92,12 +92,12 @@ input[type="submit"] {
     <div class="form2">
      <div class="form3">
 		<%=session.getAttribute("emp_id") %> 님이 접속하였습니다.
-		<form method="get" action="http://localhost:8070/pugis/test/logout">
+		<form method="get" action="http://localhost:8070/pugis/total/logout">
 		<input type="submit" value="로그아웃">
 		</form>
 		<div class = "clear"></div>
-		<label><input type="button" value="사원전체보기" onclick="location.href='http://localhost:8070/pugis/employee/employeeList'"></label>
-		<label><input type="button" value="사원배치하기" onclick="location.href='http://localhost:8070/pugis/employee/waitEmployeeList'"></label>
+		<label><input type="button" value="상품목록" onclick="location.href='http://localhost:8070/pugis/service/product'"></label>
+		<label><input type="button" value="장바구니" onclick="location.href='http://localhost:8070/pugis/service/basket'"></label>
 		<label><input type="button" value ="뒤로가기" onclick = "location.href = 'http://localhost:8070/pugis/total/goMain'"></label>
      </div>
      </div>

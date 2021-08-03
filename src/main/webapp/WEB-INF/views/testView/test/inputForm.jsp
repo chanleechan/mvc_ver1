@@ -161,7 +161,7 @@ font-size: 15px;
 
 <form method="get" action="http://localhost:8070/pugis/test/joinMember" name="userinput" onSubmit="return checkIt()">
 <div id="wrap">
-   <h1 class="member">복지등록</h1>
+   <h1 class="member">복지회원등록</h1>
    <div class="form">
     <div class="form2">
      <div class="form3">

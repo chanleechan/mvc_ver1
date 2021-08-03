@@ -23,7 +23,7 @@ import com.kh.pugis.insa.support.service.ServiceList;
 
 	
 @Controller
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/service")
 
 public class ServiceController {
 	HttpServletRequest req;
@@ -57,7 +57,7 @@ public class ServiceController {
 			model.addAttribute("happList", happList);
 			model.addAttribute("bookList",bookList);
 			model.addAttribute("bappList",bappList);
-			pageNm = "insa/support/test/product";
+			pageNm = "insa/support/service/product";
 			//pageNm = "testView/work";
 		}
 		return pageNm;
@@ -119,20 +119,20 @@ public class ServiceController {
 	int arrayB = arrayList_B.size();
 	switch(arrayH) {
 	case 0 :
-		pageNm = "insa/support/pointMenu/cart2";
+		//pageNm = "insa/support/pointMenu/cart2";
 		System.out.println("h_app장바구니 품목이 없습니다.(163)");
 		break;
 	}
 	switch(arrayBook) {
 	case 0:
-		pageNm = "insa/support/pointMenu/cart2";
+		//pageNm = "insa/support/pointMenu/cart2";
 		System.out.println("book 장바구니 품목이 없습니다.(169)");
 		break;
 		
 	}
 	switch(arrayB) {
 	case 0 :
-		pageNm = "insa/support/pointMenu/cart2";
+		//pageNm = "insa/support/pointMenu/cart2";
 		System.out.println("b_app장바구니 품목이 없습니다.(176)");
 	
 	}
@@ -189,15 +189,7 @@ public class ServiceController {
 					hprice.add(n_appList.get(i).getH_price());
 					
 				}
-//				for(int i = 0; i<hname.size(); i ++) {
-//					session.setAttribute("hname", hname);
-//					session.setAttribute("hcode", hcode);
-//					session.setAttribute("hprice", hprice);
-//				}
-//				System.out.println("세션 hname : "+session.getAttribute("hname"));
-//				System.out.println("세션 hcode : "+session.getAttribute("hcode"));
-//				System.out.println("세션 hprice : "+session.getAttribute("hprice"));
-//				System.out.println("");
+
 			
 				//---------------------------------테스트--------------------------------------//
 				
@@ -214,11 +206,11 @@ public class ServiceController {
 				if(n_appList.size() != 0) {
 					model.addAttribute("n_appList" , n_appList);
 					//pageNm = "insa/support/pointMenu/cart2";
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(n_appList.size());
 					System.out.println("장바구니 추가 완료");
 				}else if(n_appList.size() == 0){
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(n_appList.size());
 					System.out.println("h_app장바구니 품목이 없습니다.");
 					System.out.println("line263");
@@ -289,11 +281,11 @@ public class ServiceController {
 				}
 				if(b_List.size() != 0) {
 					model.addAttribute("b_List" , b_List);
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(b_List.size());
 					System.out.println("장바구니 추가 완료");
 				}else if(b_List.size() == 0){
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(b_List.size());
 					System.out.println("book장바구니 품목이 없습니다.");
 					System.out.println("line 316");
@@ -366,11 +358,11 @@ public class ServiceController {
 				}
 				if(b_appList.size() != 0) {
 					model.addAttribute("b_appList" , b_appList);
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(b_appList.size());
 					System.out.println("장바구니 추가 완료");
 				}else if(b_appList.size() == 0){
-					pageNm = "insa/support/test/cart";
+					pageNm = "insa/support/service/cart";
 					System.out.println(b_appList.size());
 					System.out.println("b_app장바구니 품목이 없습니다.");
 					System.out.println("line 370");
@@ -396,7 +388,7 @@ public class ServiceController {
 			System.out.println("저장실패");
 		}else {
 			System.out.println("성공적으로 저장되었습니다");
-			pageNm = "insa/support/test/serviceMain";
+			pageNm = "insa/support/service/serviceMain";
 		}
 		return pageNm;
 	}
@@ -427,7 +419,7 @@ public class ServiceController {
 
 			
 		}
-		pageNm = "insa/support/test/basket";
+		pageNm = "insa/support/service/basket";
 		return pageNm;
 	}
 	
@@ -444,7 +436,7 @@ public class ServiceController {
 			System.out.println("결제에 실패하였습니다.");
 		}else {
 			System.out.println("결제에 성공하였습니다.");
-			pageNm = "insa/support/test/serviceMain";
+			pageNm = "insa/support/service/serviceMain";
 		}
 		
 		return pageNm;
@@ -455,7 +447,7 @@ public class ServiceController {
 public String deleteMenu(Locale locale, Model model ,HttpServletRequest req)  {
 	logger.info("장바구니입니다..",locale);
 	
-	String pageNm = "insa/support/test/serviceMain";
+	String pageNm = "insa/support/service/serviceMain";
 	int result = 0;
 	ServiceList svt = new ServiceList();
 	result = svt.deleteBasket(req);

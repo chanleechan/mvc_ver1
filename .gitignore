@@ -9,6 +9,9 @@
 ##backup##
 backup/
 
+##testView##
+testView/
+
 
 # Log file
 *.log

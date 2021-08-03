@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.pugis.insa.support.dao.MemberDao;
 
-
-
-
-
-	
 @Controller
 @RequestMapping(value = "/test")
 
@@ -139,8 +134,24 @@ public class MemberController {
 	public String login(Locale locale)  {
 		logger.info("로그인화면입니다..",locale);
 		
-		String pageNm = "insa/support/test/serviceMain";
+		String pageNm = "insa/support/test/main";
 		
+		
+		return pageNm;
+	}
+	@RequestMapping(value = "/joinMember", method = RequestMethod.GET)
+	
+	public String joinMember(Locale locale, HttpServletRequest req) throws SQLException  {
+		logger.info("회원가입완료..",locale);
+		int check = 0;
+		MemberDao md = new MemberDao();
+		check = md.insertMember(req);
+		String pageNm = "";
+		if(check == 1) {
+			pageNm = "insa/support/test/main";
+		}else {
+			pageNm = "insa/support/test/main";
+		}
 		
 		return pageNm;
 	}

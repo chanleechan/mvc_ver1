@@ -55,6 +55,7 @@ public class RecrouitController {
 			pageNm = "/insa/recruit/waitEmployeeList";
 			
 		}
+		
 		return pageNm;
 	}
 	

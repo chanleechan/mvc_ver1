@@ -18,6 +18,7 @@ public class MemberDao {
 	Statement stmt;
 	ResultSet rs;
 	PreparedStatement pstmt;
+	PreparedStatement pstmt2;
 	HttpServletRequest req;
 	
 	public MemberDao() {
@@ -84,59 +85,49 @@ public class MemberDao {
 		
 	}
 	
-//	public ArrayList<Member> inserMember() {
-//		
-//		Member addMemberList = null;
-//		ArrayList<Member> memberList = 
-//				new ArrayList<Member>();
-//		
-//		try {
-//			conn = JDBCTemplate.getConnection();
-//			System.out.println("DB연결 성공");
-//			
-//			stmt = conn.createStatement();
-//			
-//			String emp_code = req.getParameter("emp_code");
-//			String emp_id = req.getParameter("emp_id");
-//			String f_emp_pass = req.getParameter("f_emp_pass");
-//			int f_service_point = Integer.parseInt(req.getParameter("f_service_point"));
-//			
-//			String sql ="INSERT INTO FIRST_JOIN(EMP_CODE, F_EMP_PASS, F_SERVICE_POINT, EMP_ID)"
-//					+ " VALUES(?,?,?,?)";
-//			
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, emp_code);
-//			pstmt.setString(2,f_emp_pass);
-//			pstmt.setInt(3, f_service_point);
-//			pstmt.setString(4, emp_id);
-//			
-//			conn.commit();
-//			
-//			sql = "select emp_code, f_emp_pass, f_service_point, emp_id from first_join ";
-//			
-//			rs = stmt.executeQuery(sql);
-//			while(rs.next()) {
-//				addMemberList = new Member();
-//				addMemberList.setEmp_code(rs.getString("emp_code"));
-//				addMemberList.setF_emp_pass(rs.getString("f_emp_pass"));
-//				addMemberList.setF_service_point(rs.getInt("f_service_point"));
-//				addMemberList.setEmp_id(rs.getString("emp_id"));
-//				memberList.add(addMemberList);
-//			}
-//			conn.commit();
-//			rs.close();
-//			stmt.close();
-//			conn.close();
-//			
-//			System.out.println("복지 등록 완료");
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//		}
-//		
-//		return memberList;
-//		
-//	}
+	public int insertMember(HttpServletRequest req) throws SQLException {
+		int result = 0;
+		
+		conn = JDBCTemplate.getConnection();
+		String emp_id = req.getParameter("emp_id");
+		String f_emp_pass = req.getParameter("f_emp_pass");
+		String emp_code = req.getParameter("emp_code");
+		
+		if(emp_id != null) {
+		
+			String sql = "insert into first_join(emp_code,f_emp_pass,emp_id) values(?,?,?)";
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emp_code);
+			pstmt.setString(2, f_emp_pass);
+			pstmt.setString(3, emp_id);
+			pstmt.executeQuery();
+			conn.commit();
+			
+			String insertServicePoint = "update first_join set f_service_point = "
+					+ "(select b.m_point "
+					+ "from  point_master b, employee c ,first_join a "
+					+ "where a.emp_code = ? "
+					+ "and c.service_point = b.point_code "
+					+ "and c.emp_code = a.emp_code "
+					+ ") "
+					+ "where emp_code= ?";
+			pstmt2 = conn.prepareStatement(insertServicePoint);
+			pstmt2.setString(1, emp_code);
+			pstmt2.setString(2, emp_code);
+			pstmt2.executeQuery();
+			conn.commit();
+			
+			result = 1;
+		}else {
+			result = 0;
+		}
+		pstmt.close();
+		pstmt2.close();
+		conn.close();
+		
+		return result;
+	}
 	
 	public int confirmId(String emp_id,HttpServletRequest req) throws SQLException {
 		int check = 0;

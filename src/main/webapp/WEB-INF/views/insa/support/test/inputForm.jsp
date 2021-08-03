@@ -123,32 +123,17 @@ font-size: 15px;
 		var userinput=document.userinput;
 		if(!userinput.emp_id.value){
 			alert("아이디를 입력하십시오.");
-			userinput.id.focus();
+			userinput.emp_id.focus();
 			return false;
 		}
 		if(!userinput.f_emp_pass.value){
 			alert("비밀번호를 입력하십시오.")
-			userinput.passwd.focus();
-			return false;
-		}
-		if(!userinput.phon.value){
-			alert("전화번호를 입력하십시오.");
-			userinput.name.focus();
-			return false;
-		}
-		if(!userinput.phon1.value){
-			alert("전화번호를 입력하십시오.");
-			userinput.name.focus();
-			return false;
-		}
-		if(!userinput.phon2.value){
-			alert("전화번호를 입력하십시오.");
-			userinput.name.focus();
+			userinput.f_emp_pass.focus();
 			return false;
 		}
 		if(!userinput.emp_code.value){
 			alert("사원번호를 입력하십시오.");
-			userinput.jumin1.focus();
+			userinput.emp_code.focus();
 			return false;
 		}
 		return true;
@@ -157,11 +142,11 @@ font-size: 15px;
 	function openConfirmid(userinput){
 		if(!userinput.emp_id.value){
 			alert("아이디를 입력하십시오.")
-			userinput.id.focus();
+			userinput.emp_id.focus();
 			return;
 		}
 		//userinput.emp_id.action = "http://localhost:8070/pugis/test/confirmId";
-		url="http://localhost:8070/pugis/test/confirmId?emp_id="+userinput.emp_aid.value;
+		url="http://localhost:8070/pugis/test/confirmId?emp_id="+userinput.emp_id.value;
 		//url="http://localhost:8070/pugis/test/confirmId";
 			
 		window.open(url,"confirm_id","toolbar=no,location=no,status=no,menubar=no,scrllbar=no,resizable=no,width=300,height=200");
@@ -174,26 +159,23 @@ font-size: 15px;
 
 
 
-<form method="get" action="http://localhost:8070/pugis/service/inputPro" name="userinput" onSubmit="return checkIt()">
+<form method="get" action="http://localhost:8070/pugis/test/joinMember" name="userinput" onSubmit="return checkIt()">
 <div id="wrap">
    <h1 class="member">복지등록</h1>
    <div class="form">
     <div class="form2">
      <div class="form3">
 
-<div class ="input">아이디 : <input type="text" name ="emp_id" size="10" maxlength="12">
+<div class ="input">아이디 : &nbsp;&nbsp;&nbsp;<input type="text" name ="emp_id" size="10" maxlength="12">
     <input type="button" name="confirm_id" value="중복확인" onClick="openConfirmid(this.form)"><br/>
     <div class="clear"></div>
 비밀번호 : <input type="password" name ="f_emp_pass" size="15" maxlength="12"><br/>
 <div class="clear"></div>
-전화번호 : <input type="text" name ="phon" size="3" maxlength="3">
-		   <input type="text" name="phon1" size="4" maxlength="4">
-		   <input type="text" name="phon2" size="4" maxlength="4"><br/>
 		   <div class="clear"></div>
 사원번호 : <input type="text" name ="emp_code" size="8" maxlength="8">
 <div class="clear"></div>
 <div class="clear"></div>
-<input type="button" value="등   록" onclick ="saveMenu()">
+<input type="submit" value="등   록"  >
 <input type="reset" value="다시 입력">
 </div>
 </div>

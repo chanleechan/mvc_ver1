@@ -28,7 +28,8 @@ public class RecruitDao {
 			conn = JDBCTemplate.getConnection();			
 			String sql = "select a.n_emp_code, a.n_emp_name,n_emp_phone, a.n_emp_gender, b.dept_name, c.rank_name  "
 					+ "from waitemployee a , department b, rank c "
-					+ "where a.dept_code = b.dept_code and a.rank_id = c.rank_id and a.dept_code = 'd8'";
+					+ "where a.dept_code = b.dept_code and a.rank_id = c.rank_id and a.dept_code = 'd8' "
+					+ "order by a.n_emp_code asc ";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -65,7 +66,8 @@ public class RecruitDao {
 			String sql = "select a.emp_code, a.emp_name,a.emp_phone, a.emp_gender, b.dept_name, c.rank_name "
 					+ "from employee a , department b, rank c "
 					+ "where a.dept_code = b.dept_code "
-					+ "and a.rank_id = c.rank_id ";
+					+ "and a.rank_id = c.rank_id "
+					+ "order by a.emp_code asc";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);

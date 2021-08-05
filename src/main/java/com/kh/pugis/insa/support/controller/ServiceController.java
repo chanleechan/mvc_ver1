@@ -28,10 +28,7 @@ import com.kh.pugis.insa.support.service.ServiceList;
 public class ServiceController {
 	HttpServletRequest req;
 	
-	
 	private static final Logger logger = LoggerFactory.getLogger(ServiceController.class);
-	
-
 	
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	
@@ -157,13 +154,6 @@ public class ServiceController {
 					}
 				}
 				
-//					System.out.println("arrayList_H 사이즈 : " + arrayList_H.size());
-//					System.out.println("h_app_nameList 사이즈 : " + h_app_List.size());
-				
-					
-				//중복 체크하여 n_appList에 넣어줌
-				
-				
 				int idx = 0;
 				for(int i = 0; i < h_app_List.size(); i ++) {
 					for(int j = 0; j <arrayList_H.size(); j ++) {
@@ -237,8 +227,6 @@ public class ServiceController {
 					}
 				}
 				
-//				System.out.println("arrayList_Book 사이즈 : " + arrayList_Book.size());
-//				System.out.println("book_List 사이즈 : " + arrayList_Book.size());
 				int idx = 0;
 				for(int i = 0; i < book_List.size(); i ++) {
 					for(int j = 0; j <arrayList_Book.size(); j ++) {
@@ -310,8 +298,6 @@ public class ServiceController {
 					}
 				}
 				
-//					System.out.println("arrayList_B 사이즈 : " + arrayList_B.size());
-//					System.out.println("b_app_nameList 사이즈 : " + b_app_List.size());
 				
 					
 				//중복 체크하여 n_appList에 넣어줌

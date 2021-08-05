@@ -127,18 +127,6 @@ public class MemberController {
 		return pageNm;
 	}
 	
-
-	
-//	@RequestMapping(value = "/serviceMain", method = RequestMethod.GET)
-//	
-//	public String login(Locale locale)  {
-//		logger.info("로그인화면입니다..",locale);
-//		
-//		String pageNm = "insa/support/test/main";
-//		
-//		
-//		return pageNm;
-//	}
 	@RequestMapping(value = "/joinMember", method = RequestMethod.GET)
 	
 	public String joinMember(Locale locale, HttpServletRequest req) throws SQLException  {

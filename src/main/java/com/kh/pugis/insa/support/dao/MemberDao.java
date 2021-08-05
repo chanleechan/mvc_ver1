@@ -25,34 +25,55 @@ public class MemberDao {
 		
 	}
 	
-	public int userCheck(String emp_id, String f_emp_pass,HttpSession session) throws SQLException {
+	public int userCheck(String emp_id, String f_emp_pass,HttpSession session) {
 		int ck = 0;
 		
-		conn = JDBCTemplate.getConnection();
-		System.out.println("DB연결 성공");
-
-		String sql = "select emp_code, f_emp_pass, f_service_point, emp_id from first_join where emp_id = ?";
-		String emp_code="";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, emp_id);
-		
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()) {
-			if(f_emp_pass.equals(rs.getString("f_emp_pass"))) {
-				emp_code = rs.getString("emp_code");
-				session.setAttribute("emp_code", emp_code);
-				conn.commit();
-				ck = 1;
+		try {
+			conn = JDBCTemplate.getConnection();
+	
+			System.out.println("DB연결 성공");
+	
+			String sql = "select a.emp_code, a.f_emp_pass, a.f_service_point, a.emp_id ,b.emp_name, c.dept_name, d.rank_name "
+					+ "from first_join a, employee b, department c, rank d "
+					+ "where emp_id = ? "
+					+ "and a.emp_code = b.emp_code "
+					+ "and b.dept_code = c.dept_code "
+					+ "and b.rank_id = d.rank_id";
+			String emp_code="";
+			String emp_name="";
+			String dept_name="";
+			String rank_name = "";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emp_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(f_emp_pass.equals(rs.getString("f_emp_pass"))) {
+					emp_code = rs.getString("emp_code");
+					emp_name = rs.getString("emp_name");
+					dept_name = rs.getString("dept_name");
+					rank_name = rs.getString("rank_name");
+					
+					session.setAttribute("emp_code", emp_code);
+					session.setAttribute("emp_name", emp_name);
+					session.setAttribute("dept_name", dept_name);
+					session.setAttribute("rank_name", rank_name);
+					conn.commit();
+					ck = 1;
+				}else {
+					ck = 0;
+				}
 			}else {
-				ck = 0;
+				ck = -1;
 			}
-		}else {
-			ck = -1;
+			conn.close();
+			rs.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		conn.close();
-		rs.close();
-		pstmt.close();
 		
 		return ck;
 	}

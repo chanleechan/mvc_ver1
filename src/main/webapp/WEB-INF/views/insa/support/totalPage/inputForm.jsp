@@ -145,9 +145,7 @@ font-size: 15px;
 			userinput.emp_id.focus();
 			return;
 		}
-		//userinput.emp_id.action = "http://localhost:8070/pugis/test/confirmId";
 		url="http://localhost:8070/pugis/total/confirmId?emp_id="+userinput.emp_id.value;
-		//url="http://localhost:8070/pugis/test/confirmId";
 			
 		window.open(url,"confirm_id","toolbar=no,location=no,status=no,menubar=no,scrllbar=no,resizable=no,width=300,height=200");
 		}

@@ -1,29 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
-
 <style>
-.member {
- font-size: 50px;
- text-shadow: 0 0 10px #666;
- color: #fff;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  width: 100%;
+  height:100vh;
+  background: white
+}
+.container .header{
+  width: 80%;
+  height: 80px;
+  margin:0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .header .h1 a{
+  text-decoration: none;
+  color:black;
+  font-family: "맑은 고딕";
+}
+.container .nav ul li{
+  display: inline-block;
+  margin: 0 10px;
+}
+.container .nav ul li a{
+  text-decoration: none;
+  color:black;
+}
+.container .nav ul li a:hover{
+  color:1fdfdf;
+}
+
+.loginText {
+ color: black;
  margin: 0 auto;
  text-align: center;
  text-transform: capitalize;
  font-family: "맑은 고딕";
- font-style: italic;
 }
 
 .input{
  font-size: px;
  text-shadow: 0 0 2px #666;
- color: #fff;
+ color: black;
  margin: 0 auto;
  text-transform: capitalize;
  font-family: "맑은 고딕";
- font-style: italic;
 }
 
 
@@ -120,16 +151,27 @@ input[type="reset"] {
  margin-top:30px;
  margin-right:30px;
 }
+
 </style>
 <script type="text/javascript">
 
 
 </script>
 </head>
+<body>
+<div class = "container">
+    <div class="header">
+      <h1>인사 복지 시스템</h1>
+      <div class = "nav">
+
+      </div>
+    </div>
 <form action="http://localhost:8070/pugis/total/loginPro" method ="post" name="loginform">
   <div id="wrap">
-   <h1 class="member">로그인</h1>
+   
    <div class="form">
+   <div class = "clear"> </div>
+  	 <h1 class="loginText">로그인</h1>
     <div class="form2">
      <div class="form3">
    
@@ -148,5 +190,6 @@ input[type="reset"] {
    </div>
   </div>
  </form>
+ </div>
 </body>
 </html> 

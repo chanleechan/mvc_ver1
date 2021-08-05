@@ -427,18 +427,19 @@ public class Service_dao {
 						pstmt3.setString(1, ck_bappArr.get(i));
 						pstmt3.executeUpdate();
 						conn.commit();
-						pstmt3.close();
+						
 					}
 					
 					
 					payOk = 1;
 				}
-//				sql = "delete from basket_info "
-//						+ "where book_code  is null "
-//						+ "and h_app_code is null "
-//						+ "and b_app_code is null";
-//				pstmt3=conn.prepareStatement(sql);
-
+				sql = "delete from basket_info "
+						+ "where book_code  is null "
+						+ "and h_app_code is null "
+						+ "and b_app_code is null";
+				pstmt3=conn.prepareStatement(sql);
+				conn.commit();
+				pstmt3.close();
 				conn.close();
 				
 			} catch (SQLException e) {
@@ -462,8 +463,6 @@ public class Service_dao {
 		
 		stmt = conn.createStatement();
 		String emp_code = emp_id;
-		
-		
 		
 		String[] book_code = req.getParameterValues("book_code");
 		String[] b_app_code = req.getParameterValues("b_app_code");
@@ -949,20 +948,21 @@ public class Service_dao {
 						pstmt3.setString(2, emp_code);
 						pstmt3.executeUpdate();
 						conn.commit();
+						pstmt3.close();
 					}
-					
-					
 					
 					result = 1;
 				}
-				sql = "delete from basket_info "
-						+ "where book_code  is null "
-						+ "and h_app_code is null "
-						+ "and b_app_code is null";
-				pstmt3=conn.prepareStatement(sql);
-				conn.commit();
 				
-				pstmt3.close();
+//				sql = "delete from basket_info "
+//						+ "where book_code  is null "
+//						+ "and h_app_code is null "
+//						+ "and b_app_code is null";
+//				pstmt3=conn.prepareStatement(sql);
+//				pstmt3.executeUpdate();
+//				conn.commit();
+				
+//				pstmt3.close();
 				conn.close();	
 				
 			} catch (SQLException e) {

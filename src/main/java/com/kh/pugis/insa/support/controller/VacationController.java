@@ -58,17 +58,6 @@ public class VacationController {
 		return pageNm;
 	}
 	
-//	@RequestMapping(value = "/insertVacationNo", method = RequestMethod.POST)
-//	
-//	public String insertVacationNo(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-//		logger.info("휴가등록.",locale);
-//		String pageNm = "";
-//		
-//		pageNm = "insa/";
-//		
-//		return pageNm;
-//	}
-	
 	@RequestMapping(value = "/selectVacation", method = RequestMethod.GET)
 	
 	public String selectList(Model model,Locale locale, HttpServletRequest request ) throws IOException, SQLException  {
@@ -139,33 +128,6 @@ public class VacationController {
 		return pageNm;
 	}
 	
-//	@RequestMapping(value = "/SelectOne.va", method = RequestMethod.POST)
-//
-//	public String selectOne(Model model,Locale locale, HttpServletRequest request ) throws IOException  {
-//	logger.info("휴가 목록.",locale);
-//	
-//		String vacation_code = request.getParameter("vacation_code");
-//		
-//		Vacation_work vw = null;
-//		try {
-//			vw = new VacationService().selectOne(vacation_code);
-//		} catch (SQLException e) {
-//			
-//			e.printStackTrace();
-//		}
-//		String page = "";
-//		
-//		if(vw != null) {
-//			page = "views/vacation/vacationDetail.jsp";
-//			model.addAttribute("vacation_work", vw);
-//		}else {
-//			page = "views/common/errorPage.jsp";
-//			model.addAttribute("msg", "휴가 신청서 상세 보기 실패!");
-//		}
-//		return page;
-//		
-//	}
-	
 	@RequestMapping(value = "/header", method = RequestMethod.GET)
 
 	public String header(Model model,Locale locale, HttpServletRequest request,HttpSession session ) throws IOException, SQLException  {
@@ -180,9 +142,7 @@ public class VacationController {
 		if(check > 0 || emp_name != null) {
 			page = "/insa/support/worker/index";
 		}
-			
-		
-		
+
 		return page;
 	}
 	
@@ -196,6 +156,4 @@ public class VacationController {
 		
 		return page;
 	}
-	
-
 }

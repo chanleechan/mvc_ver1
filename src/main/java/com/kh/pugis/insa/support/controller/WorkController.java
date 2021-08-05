@@ -70,7 +70,7 @@ public class WorkController {
 		
 		
 		if(result > 0) {
-			pageNm = "/insa/support/worker/index";
+			pageNm = "/insa/support/totalPage/mainlogin";
 		}else {
 			model.addAttribute("msg", "출근 등록 실패!");
 
@@ -96,7 +96,7 @@ public class WorkController {
 		
 		
 		if(result > 0) {
-			pageNm = "/insa/support/worker/index";
+			pageNm = "/insa/support/totalPage/mainlogin";
 		}else {
 			model.addAttribute("msg", "퇴근 등록 실패!");
 

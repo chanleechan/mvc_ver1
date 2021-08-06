@@ -8,20 +8,18 @@
 <title>휴가 목록</title>
 <style type="text/css">
 .member {
- font-size: 50px;
+ font-size: 20px;
  text-shadow: 0 0 10px #666;
  color: #fff;
  margin: 0 auto;
  text-align: center;
  text-transform: capitalize;
- font-family: "맑은 고딕";
- font-style: italic;
 }
 .tableArea{
-margin: 5px;
+margin: 0 auto;
 }
 table {
-  width: 1103px;
+  width: 765px;
   height: 219px;
   border-top: 1px solid #444444;
   border-collapse: collapse;
@@ -47,8 +45,6 @@ tbody tr:nth-child(2n+1) {
 <h2 class = "member" align="center">전체직원목록</h2>
 	<div class="outer" align="center">
 		<br>
-		
-		<form action ="http://localhost:8070/pugis/employee/recruitMain" method ="get">
 			<div class="tableArea" align = "center">
 				<table border="1" id="listArea">
 					<tr>
@@ -73,10 +69,7 @@ tbody tr:nth-child(2n+1) {
 					</tr>
 				</c:forEach>
 			</table>
-			<br>
-				<input type = "submit" value = "메뉴로 돌아가기" >
 			</div>
-		</form>
 	</div>	
 </body>
 </html>

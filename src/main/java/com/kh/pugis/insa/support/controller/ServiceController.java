@@ -60,7 +60,7 @@ public class ServiceController {
 		return pageNm;
 	}
 	
-	@RequestMapping(value = "/basketList", method = RequestMethod.POST)
+	@RequestMapping(value = "/basketList", method = RequestMethod.GET)
 	
 	public String basketList(Locale locale, Model model ,HttpServletRequest req)  {
 		logger.info("장바구니입니다..",locale);
@@ -359,7 +359,7 @@ public class ServiceController {
 		return pageNm;
 	}
 	
-	@RequestMapping(value = "/saveMenu", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveMenu", method = RequestMethod.GET)
 	
 	public String basket(Locale locale, Model model ,HttpServletRequest req, HttpSession session) throws ClassNotFoundException  {
 		logger.info("장바구니입니다..",locale);
@@ -422,7 +422,7 @@ public class ServiceController {
 			System.out.println("결제에 실패하였습니다.");
 		}else {
 			System.out.println("결제에 성공하였습니다.");
-			pageNm = "insa/support/service/serviceMain";
+			pageNm = "insa/support/totalPage/mainlogin";
 		}
 		
 		return pageNm;
@@ -433,14 +433,14 @@ public class ServiceController {
 public String deleteMenu(Locale locale, Model model ,HttpServletRequest req)  {
 	logger.info("장바구니입니다..",locale);
 	
-	String pageNm = "insa/support/service/serviceMain";
+	String pageNm = "insa/support/totalPage/mainlogin";
 	int result = 0;
 	ServiceList svt = new ServiceList();
 	result = svt.deleteBasket(req);
 	if(result == 0) {
-		System.out.println("결제에 실패하였습니다.");
+		System.out.println("삭제에 실패하였습니다.");
 	}else {
-		System.out.println("결제에 성공하였습니다.");
+		System.out.println("삭제를 성공하였습니다.");
 	}
 	return pageNm;
 	}

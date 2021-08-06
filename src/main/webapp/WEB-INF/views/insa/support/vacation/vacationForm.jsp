@@ -19,20 +19,18 @@
 <title>휴가 신청</title>
 <style type="text/css">
 .member {
- font-size: 50px;
+ font-size: 20px;
  text-shadow: 0 0 10px #666;
  color: #fff;
  margin: 0 auto;
  text-align: center;
  text-transform: capitalize;
- font-family: "맑은 고딕";
- font-style: italic;
 }
 .tableArea{
-margin: 5px;
+margin: 0 auto;
 }
 table {
-  width: 1103px;
+  width: 765px;
   height: 219px;
   border-top: 1px solid #444444;
   border-collapse: collapse;
@@ -88,33 +86,46 @@ button:hover {
 	background:linear-gradient(#ffffff, #e4f1ff);
 }
 
-  th, td {
-    border: 1px solid #444444;
-    padding: 10px;
-  }
+th, td {
+  font-size:11px;
+  border: 1px solid #444444;
+  padding:5px;
+  background-color : skyblue;
+}
+td input{
+  font-size:11px;
+}
+textarea{
+  resize : none;
+}
 </style>
+<script type="text/javascript">
+function check(){
+	alert("신청이 완료되었습니다.");
+}
+</script>
 </head>
 <body>
 	<div class="outer">
 		<br>
-		<h2 class = "member">휴가 신청서</h2>
+			<h3 class = "member">휴가 신청서</h3>
 		<br>
 		<div class="tableArea" align="center">
-			<form class="form" action="http://localhost:8070/pugis/vacation/vInsert" method="get">
+			<form class="form" action="http://localhost:8070/pugis/vacation/vInsert" name = "userinput" method="get" onsubmit="return check()">
 				<table >
 					<tr>
 						<td>신청 날짜</td>
-						<td><input type="text" name="vacation_code" value = "<%=strdate%>"></td>	<!--  // 불러오는걸로 변경-->
-						<td>사번</td>	<!-- // 불러오기 -->
-						<td><input type="text" name="emp_code"></td>
+						<td><input type="text" name="vacation_code" value = "<%=strdate%>"></td>	
+						<td>사번</td>	
+						<td><input type="text" name="emp_code" value = "<%=session.getAttribute("emp_code")%>"></td>
 						<td>성명</td>
-						<td> <!--  // 불러오기 -->
-						<input type="text" name="n_emp_name">
+						<td> 
+						<input type="text" name="n_emp_name" value ="<%=session.getAttribute("emp_name")%>">
 						</td>
 					</tr>
 					<tr>
 						<td>시작일</td>
-						<td><input type="date" name="vacation_startDate"></td>	<!-- // 달력으로 -->
+						<td><input type="date" name="vacation_startDate"></td>	
 						<td>끝</td>
 						<td><input type="date" name="vacation_endDate"></td>
 						<td>상태</td>
@@ -122,7 +133,7 @@ button:hover {
 					</tr>
 					<tr>
 						<td>휴가 사유</td>
-						<td colspan="6"><textarea rows="10" cols="50" name = "vcontent"></textarea>
+						<td colspan="6"><textarea rows="10" cols="89" name = "vcontent"></textarea>
 					</tr>
 				</table>
 				<br>

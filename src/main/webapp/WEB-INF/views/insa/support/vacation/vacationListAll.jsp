@@ -10,6 +10,12 @@
 .tableArea{
 margin: 0 auto;
 }
+table {
+  width: 765px;
+  height: 219px;
+  border-top: 1px solid #444444;
+  border-collapse: collapse;
+}
 .member {
  font-size: 20px;
  text-shadow: 0 0 10px #666;
@@ -17,12 +23,6 @@ margin: 0 auto;
  margin: 0 auto;
  text-align: center;
  text-transform: capitalize;
-}
-table {
-  width: 765px;
-  height: 219px;
-  border-top: 1px solid #444444;
-  border-collapse: collapse;
 }
 th, td {
   font-size:11px;
@@ -43,17 +43,14 @@ tbody tr:nth-child(2n+1) {
 </style>
 
 <script type="text/javascript">
-	function check(){
-		alert("수정하였습니다.");
-	}
 </script>
 </head>
 <body>
 	<div class="outer" align="center">
 			<h3 class = "member">신청자 목록</h3>
 		<br>
-		<form action ="http://localhost:8070/pugis/vacation/vaOk" method ="get" onsubmit="return check()">
 			<div class="tableArea" align = "center">
+			<form action="http://localhost:8070/pugis/vacation/selectVacationAll" method="get">
 				<table border="1" id="listArea">
 				<tr>
 					<th>휴가신청코드</th>
@@ -64,36 +61,26 @@ tbody tr:nth-child(2n+1) {
 					<th>복귀일</th>
 					<th>사유</th>
 					<th>상태</th>
-					<th>수정</th>
 				</tr>
 			<c:if test = "${empty vaList}">
-					<td colspan="9">수정할 내용이 없습니다.</td>
+					<td colspan="9">내용이 존재하지 않습니다.</td>
 			</c:if>
 			<c:forEach var="List" items="${vaList}" >	
 				<tr>
 					<td>${List.va_code}</td>
 					<td>${List.vacation_applyDay}</td>	
-					<td>${List.emp_code }</td>
+					<td>${List.emp_code}</td>
 					<td>${List.n_emp_name }</td>
-					<td>${List.vacation_startDate }</td>
-					<td>${List.vacation_endDate }</td>
+					<td>${List.vacation_startDate}</td>
+					<td>${List.vacation_endDate}</td>
 					<td>${List.vcontent }</td>
 					<td>${List.status }</td>
-					<td>
-						<select id = "vaOk" name = "vaStatus">
-							<option value = "대기">상태변경</option>
-							<option value = "승인">승인</option>
-							<option value = "반려">반려</option>
-						</select>
-					<input type = "hidden" name = "va_code" value ="${List.va_code}" >
-					</td>
 				</tr>
 				</c:forEach>	
-			</table>
-			<br>
-				<input type = "submit" value = "수정하기" >	
+				</table>
+			</form>
 			</div>
-		</form>
+		
 	</div>	
 </body>
 </html>

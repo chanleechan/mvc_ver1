@@ -244,7 +244,7 @@ public class Service_dao {
 		}
 		
 		HttpSession session = req.getSession();
-		String emp_code = (String)session.getAttribute("emp_id");
+		String emp_code = (String)session.getAttribute("emp_code");
 		
 		
 		try {

@@ -26,7 +26,7 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	
 	public String logout(Locale locale)  {
 		logger.info("로그아웃 처리.",locale);
@@ -68,6 +68,9 @@ public class MemberController {
 				session = req.getSession();
 				session.setAttribute("emp_id", emp_id);
 				pageNm = "insa/support/totalPage/mainlogin";
+			}else if(ck == 0 || ck == -1){
+				pageNm = "insa/support/totalPage/main";
+				System.out.println("아이디나 비밀번호가 올바르지 않습니다.");
 			}
 			System.out.println(ck);		
 		return pageNm;

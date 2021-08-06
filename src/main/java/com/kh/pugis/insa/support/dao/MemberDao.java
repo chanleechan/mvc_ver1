@@ -33,7 +33,7 @@ public class MemberDao {
 	
 			System.out.println("DB연결 성공");
 	
-			String sql = "select a.emp_code, a.f_emp_pass, a.f_service_point, a.emp_id ,b.emp_name, c.dept_name, d.rank_name "
+			String sql = "select a.emp_code, a.f_emp_pass, a.f_service_point, a.emp_id ,b.emp_name, c.dept_name, d.rank_name,b.manager "
 					+ "from first_join a, employee b, department c, rank d "
 					+ "where emp_id = ? "
 					+ "and a.emp_code = b.emp_code "
@@ -43,6 +43,7 @@ public class MemberDao {
 			String emp_name="";
 			String dept_name="";
 			String rank_name = "";
+			String manager = "";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, emp_id);
 			
@@ -54,11 +55,13 @@ public class MemberDao {
 					emp_name = rs.getString("emp_name");
 					dept_name = rs.getString("dept_name");
 					rank_name = rs.getString("rank_name");
+					manager = rs.getString("manager");
 					
 					session.setAttribute("emp_code", emp_code);
 					session.setAttribute("emp_name", emp_name);
 					session.setAttribute("dept_name", dept_name);
 					session.setAttribute("rank_name", rank_name);
+					session.setAttribute("manager", manager);
 					conn.commit();
 					ck = 1;
 				}else {

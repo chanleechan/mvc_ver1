@@ -43,12 +43,11 @@ public class VacationController {
 			result = new VacationService().insertVacation(vw, request);
 			if(result > 0) {
 				// 성공
-				pageNm = "/insa/support/worker/index";
+				pageNm = "/insa/support/totalPage/mainlogin";
 			} else { 
 				// 실패
 				model.addAttribute("msg", "휴가 신청 등록 실패!");
-				//pageNm = "views/common/errorPage.jsp";
-				pageNm = "/common/errorPage.jsp";
+				pageNm = "/insa/support/total/mainlogin";
 			}
 		
 		} catch (SQLException e) {
@@ -93,10 +92,30 @@ public class VacationController {
 		if(vacationList != null) {
 			
 			model.addAttribute("vaList", vacationList);
-			page = "/insa/support/vacation/vacationList";
+			page = "/insa/support/vacation/vacationListAll";
 		} else {
 			model.addAttribute("msg", "내용이 없습니다.");
-			page = "/insa/support/vacation/vacationList";
+			page = "/insa/support/vacation/vacationListAll";
+			
+		}
+		return page;
+	}
+	@RequestMapping(value = "/myVacationList", method = RequestMethod.GET)
+	
+	public String myVacationList(Model model,Locale locale, HttpSession session ) throws IOException, SQLException  {
+		logger.info("휴가 목록.",locale);
+		
+		ArrayList<Vacation_work> vacationList = null;
+		VacationService vs = new VacationService();
+		vacationList = vs.myVacationList(session);
+		
+		String page = "";
+		if(vacationList != null) {
+			model.addAttribute("vaList", vacationList);
+			page = "/insa/support/vacation/vacationListAll";
+		} else {
+			model.addAttribute("msg", "내용이 없습니다.");
+			page = "/insa/support/vacation/vacationListAll";
 			
 		}
 		return page;
@@ -118,10 +137,10 @@ public class VacationController {
 				e.printStackTrace();
 			}
 			if(result > 0) {
-				pageNm = "/insa/support/worker/index";
+				pageNm = "/insa/support/totalPage/mainlogin";
 			} else {
 				model.addAttribute("msg","공지사항 수정 실패!!");
-				pageNm = "/insa/support/worker/index";
+				pageNm = "/insa/support/totalPage/mainlogin";
 			}
 		
 		

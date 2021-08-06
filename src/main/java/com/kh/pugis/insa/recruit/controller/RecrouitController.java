@@ -88,9 +88,10 @@ public class RecrouitController {
 		result = ed.deptUpdate(req);
 		if(result != 0) {
 		
-			pageNm = "insa/recruit/employeeListAll";
+			pageNm = "insa/support/totalPage/mainlogin";
+			System.out.println("변경하였습니다.");
 		}else {
-			pageNm = "insa/recruit/employeeListAll";
+			pageNm = "insa/support/totalPage/mainlogin";
 		}
 		
 		return pageNm;

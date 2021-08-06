@@ -44,14 +44,11 @@ public class VacationService {
 		return vacationList;
 	}
 
-	public Vacation_work selectOne(String vacation_code) throws SQLException {
-		Connection conn = JDBCTemplate.getConnection();
+	public ArrayList<Vacation_work> myVacationList(HttpSession session) throws SQLException {
+		ArrayList<Vacation_work> myList = null;
+		myList = new VacationDao().myVacationList(session);
 		
-		Vacation_work vw = new VacationDao().selectOne(conn, vacation_code);
-		
-		conn.close();
-		
-		return vw;
+		return myList;
 	}
 
 //	public int okVacation(Vacation_work vw) throws SQLException {

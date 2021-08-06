@@ -139,7 +139,7 @@ public class VacationDao {
 		ArrayList<Vacation_work> list = null;
 		conn = JDBCTemplate.getConnection();
 		
-		String sql = "SELECT * FROM VACATION_WORK where status='대기' ORDER BY va_code ASC";
+		String sql = "SELECT * FROM VACATION_WORK where status='대기' ORDER BY to_number(va_code) ASC";
 		
 		try {
 			stmt = conn.createStatement();
@@ -177,7 +177,7 @@ public class VacationDao {
 		ArrayList<Vacation_work> list = null;
 		conn = JDBCTemplate.getConnection();
 		
-		String sql = "SELECT * FROM VACATION_WORK ORDER BY va_code ASC";
+		String sql = "SELECT * FROM VACATION_WORK ORDER BY to_number(va_code) ASC";
 		
 		try {
 			stmt = conn.createStatement();
@@ -212,38 +212,39 @@ public class VacationDao {
 		return list;
 	}
 
-	public Vacation_work selectOne(Connection conn, String vacation_code) throws SQLException {
-		Vacation_work vw = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
+	public ArrayList<Vacation_work> myVacationList(HttpSession session) throws SQLException {
+		ArrayList<Vacation_work> myList = new ArrayList<Vacation_work>();
+		String emp_code = "";
+		emp_code = (String)session.getAttribute("emp_code");
 		conn = JDBCTemplate.getConnection();
-		String sql = "SELECT * FROM VACATION WHERE EMP_CODE=?";
+		String sql = "SELECT * FROM VACATION_WORK WHERE EMP_CODE=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vacation_code);
+			pstmt.setString(1, emp_code);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				vw = new Vacation_work();
-				
-				vw.setVa_code(vacation_code);
+			while(rs.next()) {
+				Vacation_work vw = new Vacation_work();
+				vw.setVacation_applyDay(rs.getString("vacation_applyday"));
+				vw.setVa_code(emp_code);
 				vw.setEmp_code(rs.getString("emp_code"));
 				vw.setN_emp_name(rs.getString("n_emp_name"));
 				vw.setVacation_startDate(rs.getString("vacation_startDate"));
 				vw.setVacation_endDate(rs.getString("vacation_endDate"));
-				vw.setVcontent(rs.getString("vcontent"));
+				vw.setVcontent(rs.getString("contents"));
 				vw.setStatus(rs.getString("status"));
+				myList.add(vw);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			
 			e.printStackTrace();
 		} finally {
 			rs.close();
 			pstmt.close();
+			conn.close();
 		}
-		return vw;
+		return myList;
 	}
 
 	public int vacationCommit(HttpServletRequest req, HttpSession session) throws SQLException {

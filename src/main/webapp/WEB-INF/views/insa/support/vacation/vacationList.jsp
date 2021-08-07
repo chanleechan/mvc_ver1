@@ -5,42 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel ="stylesheet" href = "<c:url value="/resources/css/table.css"/>"  rel = "stylesheet">
 <title>휴가 목록</title>
-<style type="text/css">
-.tableArea{
-margin: 0 auto;
-}
-.member {
- font-size: 20px;
- text-shadow: 0 0 10px #666;
- color: #fff;
- margin: 0 auto;
- text-align: center;
- text-transform: capitalize;
-}
-table {
-  width: 765px;
-  height: 219px;
-  border-top: 1px solid #444444;
-  border-collapse: collapse;
-}
-th, td {
-  font-size:11px;
-  border-bottom: 1px solid #444444;
-  padding: 10px;
-  text-align: center;
-}
-thead tr {
-  background-color: #0d47a1;
-  color: #ffffff;
-}
-tbody tr:nth-child(2n) {
-  background-color: #bbdefb;
-}
-tbody tr:nth-child(2n+1) {
-  background-color: #e3f2fd;
-}
-</style>
+
+
 
 <script type="text/javascript">
 	function check(){

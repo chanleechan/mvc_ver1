@@ -1,0 +1,131 @@
+.contentSidebar_vacommit{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_myVa{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_vaSelect{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_vaSelectAll{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_product{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_basket{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_memberListAll{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+.contentSidebar_recruitMember{
+  margin-left: 15px;
+  width:770px;
+  height:400px;
+  background-color:#f8e2cf;
+  position:absolute;
+  left:-785px;
+  z-index:30;
+  transition:all .35s;
+}
+input[id="sidecontents_vaCommit"]{
+  display:none;
+}
+input[id="sidecontents_myVa"]{
+  display:none;
+}
+input[id="sidecontents_vaSelect"]{
+  display:none;
+}
+input[id="sidecontents_vaSelectAll"]{
+  display:none;
+}
+input[id="sidecontents_productList"]{
+  display:none;
+}
+input[id="sidecontents_basket"]{
+  display:none;
+}
+input[id="sidecontents_memberListAll"]{
+  display:none;
+}
+input[id="sidecontents_recruitMember"]{
+  display:none;
+}
+
+input[id = "sidecontents_vaCommit"]:checked ~ main .main .contentSidebar_vacommit{
+  left:0;
+}
+
+input[id = "sidecontents_myVa"]:checked ~ main .main .contentSidebar_myVa{
+  left:0;
+}
+input[id = "sidecontents_vaSelect"]:checked ~ main .main .contentSidebar_vaSelect{
+  left:0;
+}
+input[id = "sidecontents_vaSelectAll"]:checked ~ main .main .contentSidebar_vaSelectAll{
+  left:0;
+}
+
+input[id = "sidecontents_productList"]:checked ~ main .main .contentSidebar_product{
+  left:0;
+}
+input[id = "sidecontents_basket"]:checked ~ main .main .contentSidebar_basket{
+  left:0;
+}
+input[id = "sidecontents_memberListAll"]:checked ~ main .main .contentSidebar_memberListAll{
+  left:0;
+}
+input[id = "sidecontents_recruitMember"]:checked ~ main .main .contentSidebar_recruitMember{
+  left:0;
+}

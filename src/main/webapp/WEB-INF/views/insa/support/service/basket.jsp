@@ -4,64 +4,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-.member {
- font-size: 20px;
- text-shadow: 0 0 10px #666;
- color: #fff;
- margin: 0 auto;
- text-align: center;
- text-transform: capitalize;
-}
-.tableArea{
-margin: 0 auto;
-}
-table {
-  width: 765px;
-  height: 219px;
-  border-top: 1px solid #444444;
-  border-collapse: collapse;
-}
-th, td {
-  border-bottom: 1px solid #444444;
-  padding: 10px;
-  text-align: center;
-  font-size:11px;
-}
-thead tr {
-  background-color: #0d47a1;
-  color: #ffffff;
-}
-tbody tr:nth-child(2n) {
-  background-color: #bbdefb;
-}
-tbody tr:nth-child(2n+1) {
-  background-color: #e3f2fd;
-}
-</style>
+<link rel ="stylesheet" href = "<c:url value="/resources/css/table.css"/>"  rel = "stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 function paycheck(){
 	var payStr = 0;
 	var pay = parseInt(payStr);
 	var mypoint = <%=session.getAttribute("f_service_point") %>;
-	for(i = 0; i < document.getElementsByName('h_appcheck').length; i++){
-		if(document.getElementsByName('h_appcheck')[i].checked == true){
+	for(i = 0; i < document.getElementsByName('h_appcheck_basket').length; i++){
+		if(document.getElementsByName('h_appcheck_basket')[i].checked == true){
 			pay = pay + parseInt(document.getElementsByName('h_app_priceH')[i].value);
 
 		}
 	}
 	document.getElementById('choice_pay').innerText = pay;
 	
-	for(i = 0; i < document.getElementsByName('b_appcheck').length; i++){
-		if(document.getElementsByName('b_appcheck')[i].checked == true){
+	for(i = 0; i < document.getElementsByName('b_appcheck_basket').length; i++){
+		if(document.getElementsByName('b_appcheck_basket')[i].checked == true){
 			pay = pay + parseInt(document.getElementsByName('b_app_priceH')[i].value);
 		}
 	}
 	document.getElementById('choice_pay').innerText = pay;
 	
-	for(i = 0; i < document.getElementsByName('bookcheck').length; i++){
-		if(document.getElementsByName('bookcheck')[i].checked == true){
+	for(i = 0; i < document.getElementsByName('bookcheck_basket').length; i++){
+		if(document.getElementsByName('bookcheck_basket')[i].checked == true){
 			pay = pay + parseInt(document.getElementsByName('book_priceH')[i].value);
 		}
 	}
@@ -112,11 +78,11 @@ function deleteMenu(){
 		<table border="1" id="listArea" >
 	    			<tbody id = "category">
 	     				<tr align = "center" bgcolor="white">
-	     					<td>주문번호</td>
-							<td>품목</td>
-							<td>남은수량</td>
-							<td>가격</td>
-							<td>결제</td>
+	     					<th>주문번호</th>
+							<th>품목</th>
+							<th>남은수량</th>
+							<th>가격</th>
+							<th>결제</th>
 					    </tr>
 					</tbody>
 					<c:if test = "${empty happList && empty basketList && empty bappList}">
@@ -136,7 +102,7 @@ function deleteMenu(){
 								<input type = "hidden" name = "h_app_priceH" value = "${searchResultItem.h_appliance.h_price}">
 								</td>
 								<td>
-									<input  type='checkbox' id = "h_appcheck" name = "h_appcheck" value = "${searchResultItem.basket_seq}">
+									<input  type='checkbox' id = "h_appcheck_basket" name = "h_appcheck_basket" value = "${searchResultItem.basket_seq}">
 								</td>
 						    </tr>
 					    </tbody>
@@ -155,7 +121,7 @@ function deleteMenu(){
 								<input type="hidden" name="book_priceH" value = "${searchResultItem.book.book_price}">
 								</td>
 								<td>
-									<input  type='checkbox' name = "bookcheck" value = "${searchResultItem.basket_seq}">
+									<input  type='checkbox' name = "bookcheck_basket" value = "${searchResultItem.basket_seq}">
 								</td>
 						    </tr>
 					    </tbody>
@@ -174,7 +140,7 @@ function deleteMenu(){
 								<input type = "hidden" name = "b_app_priceH" value = "${searchResultItem.b_appliance.b_price}">
 								</td>
 								<td>
-									<input  type='checkbox' name = "b_appcheck" value = "${searchResultItem.basket_seq}">
+									<input  type='checkbox' name = "b_appcheck_basket" value = "${searchResultItem.basket_seq}">
 								</td>
 						    </tr>
 					    </tbody>

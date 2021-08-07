@@ -192,17 +192,17 @@ public class Service_dao {
 		ArrayList<String> ck_bookCode = new ArrayList<String>();
 		
 		String[] ck_bookStr = null;		
-		ck_bookStr = req.getParameterValues("bookcheck");	
+		ck_bookStr = req.getParameterValues("bookcheck_basket");	
 		String[] ck_bookC = null;
 		ck_bookC = req.getParameterValues("book_code");
 		
 		String[] ck_happStr = null;
-		ck_happStr = req.getParameterValues("h_appcheck");
+		ck_happStr = req.getParameterValues("h_appcheck_basket");
 		String[] ck_happC = null;
 		ck_happC = req.getParameterValues("h_app_code");
 		
 		String[] ck_bappStr = null;
-		ck_bappStr = req.getParameterValues("b_appcheck");
+		ck_bappStr = req.getParameterValues("b_appcheck_basket");
 		String[] ck_bappC = null;
 		ck_bappC = req.getParameterValues("b_app_code");
 		
@@ -287,12 +287,18 @@ public class Service_dao {
 					}
 					
 					for(int i = 0; i<ck_bookCode.size(); i++) {
-					pointUpdate = "update first_join set f_service_point = "
-							+ "(f_service_point -(select sum(book_price)as 전체가격 "
-							+ "from service_menu "
-							+ "where book_code = '"+ck_bookCode.get(i)+"' "
-							+ "and emp_code ='"+emp_code+"' "
-							+ "and pay_seq ='"+serviceSeq+"'))";
+					pointUpdate = 
+							"update first_join set f_service_point = "
+							+ "("
+							+ "select f_service_point -"
+							+ "("
+								+ "select sum(book_price) "
+								+ "from service_menu "
+								+ "where book_code = '"+ck_bookCode.get(i)+"' "
+								+ "and emp_code ='"+emp_code+"' "
+								+ "and pay_seq ='"+serviceSeq+"'"
+							+ ")"
+							+ "from first_join where emp_code = '"+emp_code+ "') where emp_code= '"+emp_code+"'";
 
 					pstmt.executeUpdate(pointUpdate);
 					conn.commit();
@@ -335,12 +341,23 @@ public class Service_dao {
 					}	
 					
 					for(int i = 0; i<ck_happCode.size(); i++) {
-					pointUpdate = "update first_join set f_service_point = "
-							+ "(f_service_point -(select sum(h_price)as 전체가격 "
+					pointUpdate = 
+							"update first_join set f_service_point = "
+							+ "("
+							+ "select f_service_point -"
+							+ "(select sum(h_price) "
 							+ "from service_menu "
 							+ "where h_app_code = '"+ck_happCode.get(i)+"' "
 							+ "and emp_code ='"+emp_code+"' "
-							+ "and pay_seq ='"+serviceSeq+"'))";
+							+ "and pay_seq ='"+serviceSeq+"')"
+							+ "from first_join where emp_code = '"+emp_code+ "') where emp_code= '"+emp_code+"'";
+							
+//							"update first_join set f_service_point = "
+//							+ "(f_service_point -(select sum(h_price)as 전체가격 "
+//							+ "from service_menu "
+//							+ "where h_app_code = '"+ck_happCode.get(i)+"' "
+//							+ "and emp_code ='"+emp_code+"' "
+//							+ "and pay_seq ='"+serviceSeq+"'))";
 
 					pstmt2.executeUpdate(pointUpdate);
 					conn.commit();
@@ -379,12 +396,23 @@ public class Service_dao {
 					}
 					
 					for(int i = 0; i<ck_bappCode.size(); i++) {
-					pointUpdate = "update first_join set f_service_point = "
-							+ "(f_service_point -(select sum(b_price)as 전체가격 "
+					pointUpdate = 
+							"update first_join set f_service_point = "
+							+ "("
+							+ "select f_service_point -"
+							+ "(select sum(b_price) "
 							+ "from service_menu "
 							+ "where b_app_code = '"+ck_bappCode.get(i)+"' "
 							+ "and emp_code ='"+emp_code+"' "
-							+ "and pay_seq ='"+serviceSeq+"'))";
+							+ "and pay_seq ='"+serviceSeq+"')"
+							+ "from first_join where emp_code = '"+emp_code+ "') where emp_code= '"+emp_code+"'";
+							
+//							"update first_join set f_service_point = "
+//							+ "(f_service_point -(select sum(b_price)as 전체가격 "
+//							+ "from service_menu "
+//							+ "where b_app_code = '"+ck_bappCode.get(i)+"' "
+//							+ "and emp_code ='"+emp_code+"' "
+//							+ "and pay_seq ='"+serviceSeq+"'))";
 
 					pstmt.executeUpdate(pointUpdate);
 					conn.commit();
@@ -866,13 +894,13 @@ public class Service_dao {
 		ArrayList<String> ck_bookArr = new ArrayList<String>();
 		
 		String[] ck_bookStr = null;		
-		ck_bookStr = req.getParameterValues("bookcheck");	
+		ck_bookStr = req.getParameterValues("bookcheck_basket");	
 		
 		String[] ck_happStr = null;
-		ck_happStr = req.getParameterValues("h_appcheck");
+		ck_happStr = req.getParameterValues("h_appcheck_basket");
 		
 		String[] ck_bappStr = null;
-		ck_bappStr = req.getParameterValues("b_appcheck");
+		ck_bappStr = req.getParameterValues("b_appcheck_basket");
 		
 		String serviceSeq = service_seq();
 		System.out.println(serviceSeq);
